@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>太郎 & 花子 結婚式のご案内</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ai: #1e2b45;        /* 藍墨 */
+  --ai-soft: #3a4968;
+  --paper: #f5f6f2;
+  --fuji: #c9cce0;      /* 白藤 */
+  --kin: #b59a5b;       /* 薄金 */
+  --tile: #e3e5ec;
+  --mincho: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ai);
+  font-family: var(--gothic);
+  line-height: 1.9;
+  -webkit-text-size-adjust: 100%;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+h1, h2, h3 { font-family: var(--mincho); font-weight: 600; margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--kin); outline-offset: 3px; }
+
+/* パスワード画面 */
+.gate {
+  position: fixed; inset: 0; z-index: 10;
+  display: grid; place-content: center; justify-items: center; gap: 1.25rem;
+  background: var(--ai); color: var(--paper); text-align: center;
+  padding: 2rem; padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+}
+.gate h1 { font-size: 1.5rem; letter-spacing: .12em; }
+.gate p { margin: 0; color: var(--fuji); font-size: .9rem; }
+.gate form { display: grid; gap: .75rem; width: min(18rem, 100%); }
+.gate input, .gate button {
+  font: inherit; font-size: 1rem; padding: .8rem 1rem; border-radius: 2px; border: 1px solid var(--fuji);
+}
+.gate input { background: transparent; color: var(--paper); text-align: center; }
+.gate button { background: var(--paper); color: var(--ai); border-color: var(--paper); cursor: pointer; font-weight: 500; }
+.gate .err { min-height: 1.5em; color: #f0b8b0; font-size: .85rem; }
+.gate[hidden], main[hidden] { display: none; }
+
+/* ヒーロー */
+.hero {
+  min-height: 100svh;
+  background: var(--ai); color: var(--paper);
+  display: grid; place-content: center; justify-items: center; gap: 2.5rem;
+  text-align: center;
+  padding: calc(3rem + env(safe-area-inset-top, 0px)) 1.5rem 3rem;
+}
+.names {
+  display: flex; flex-direction: row-reverse; gap: 1.2rem; align-items: flex-start;
+  font-size: clamp(2.6rem, 11vw, 5rem); letter-spacing: .25em; line-height: 1.3;
+  animation: rise 1.6s ease both;
+}
+.names span { writing-mode: vertical-rl; }
+.names .bar { width: 1px; align-self: stretch; background: var(--kin); }
+.hero-date { font-family: var(--mincho); font-size: 1.25rem; letter-spacing: .2em; margin: 0; }
+.hero-lead { margin: 0; color: var(--fuji); font-size: .9rem; letter-spacing: .1em; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* 本文 */
+section { padding: 4.5rem 1.5rem; max-width: 40rem; margin: 0 auto; }
+section + section { border-top: 1px solid var(--fuji); }
+h2 { font-size: 1.6rem; letter-spacing: .15em; margin-bottom: 2rem; }
+dl { margin: 0; display: grid; grid-template-columns: 5.5rem 1fr; gap: .9rem 1rem; }
+dt { color: var(--kin); font-weight: 500; }
+dd { margin: 0; }
+.btn {
+  display: inline-block; margin-top: 1.75rem; padding: .75rem 1.5rem;
+  border: 1px solid var(--ai); text-decoration: none; border-radius: 2px;
+}
+.btn:hover { background: var(--ai); color: var(--paper); }
+.access { margin: 2rem 0 0; padding-left: 1.2rem; }
+.access li { margin-bottom: .4rem; }
+
+.timeline { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 1px solid var(--kin); }
+.timeline li { position: relative; display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; padding-bottom: 1.6rem; }
+.timeline li::before {
+  content: ""; position: absolute; left: calc(-1.5rem - 4px); top: .7rem;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--kin);
+}
+.timeline time { font-family: var(--mincho); font-weight: 600; }
+
+.profiles { display: grid; gap: 2.5rem; }
+.profile h3 { font-size: 1.3rem; letter-spacing: .12em; }
+.profile .role { margin: 0 0 .25rem; color: var(--kin); font-weight: 500; }
+.profile p:last-child { margin: .75rem 0 0; }
+
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+.gallery img, .gallery .ph { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+.gallery .ph { background: var(--tile); display: grid; place-content: center; color: var(--ai-soft); font-size: .85rem; }
+
+footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inset-bottom, 0px)); background: var(--ai); color: var(--fuji); font-family: var(--mincho); letter-spacing: .15em; }
+
+/* ハンバーガーメニュー */
+.menu-btn {
+  position: fixed; top: calc(.75rem + env(safe-area-inset-top, 0px)); right: .75rem; z-index: 8;
+  width: 2.75rem; height: 2.75rem; padding: 0; border-radius: 50%;
+  border: 1px solid var(--kin); background: var(--ai);
+  display: grid; place-content: center; gap: 5px; cursor: pointer;
+}
+.menu-btn span { display: block; width: 1.2rem; height: 1px; background: var(--paper); transition: transform .25s, opacity .25s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.drawer { position: fixed; inset: 0; z-index: 7; background: var(--ai); color: var(--paper); display: grid; place-content: center; padding: 2rem; }
+.drawer[hidden] { display: none; }
+.drawer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; text-align: center; }
+.drawer a { font-family: var(--mincho); font-size: 1.4rem; letter-spacing: .15em; text-decoration: none; }
+
+/* 生い立ち・写真・共有 */
+.sub { font-size: 1.15rem; letter-spacing: .12em; margin: 3.5rem 0 1.5rem; }
+.timeline .who { color: var(--kin); font-weight: 500; margin-right: .6rem; }
+.ph-btn { padding: 0; border: 0; background: none; cursor: zoom-in; display: block; }
+.lb { position: fixed; inset: 0; z-index: 9; background: rgba(30, 43, 69, .96); display: grid; place-content: center; padding: 1rem; cursor: zoom-out; }
+.lb[hidden] { display: none; }
+.lb img { max-width: 100%; max-height: 90svh; object-fit: contain; }
+.share p { margin: 0 0 .5rem; }
+.share .btn { margin: .5rem .75rem 0 0; }
+
+@media (min-width: 720px) {
+  .profiles { grid-template-columns: 1fr 1fr; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+  section { max-width: 46rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .names { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <h1 id="gateTitle"></h1>
+  <p>ご案内ページを開くには合言葉を入力してください</p>
+  <form id="gateForm">
+    <input id="pw" type="password" autocomplete="off" aria-label="合言葉" placeholder="合言葉">
+    <button type="submit">ひらく</button>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+</div>
+
+<main id="main" hidden>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  <nav class="drawer" id="drawer" aria-label="ページ内メニュー" hidden>
+    <ul>
+      <li><a href="#info">日時・アクセス</a></li>
+      <li><a href="#schedule">当日の流れ</a></li>
+      <li><a href="#about">二人の生い立ち</a></li>
+      <li><a href="#photos">ギャラリー</a></li>
+      <li><a href="#share">当日の写真</a></li>
+    </ul>
+  </nav>
+  <div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
+
+  <header class="hero">
+    <h1 class="names" id="names"></h1>
+    <p class="hero-date" id="heroDate"></p>
+    <p class="hero-lead">私たちの結婚式にお越しください</p>
+  </header>
+
+  <section id="info">
+    <h2>日時・アクセス</h2>
+    <dl id="infoList"></dl>
+    <a class="btn" id="mapLink" target="_blank" rel="noopener">Googleマップで開く</a>
+    <ul class="access" id="access"></ul>
+  </section>
+
+  <section id="schedule">
+    <h2>当日の流れ</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <section id="about">
+    <h2>二人の生い立ち</h2>
+    <div class="profiles" id="profiles"></div>
+    <h3 class="sub">これまでのあゆみ</h3>
+    <ol class="timeline" id="history"></ol>
+  </section>
+
+  <section id="photos">
+    <h2>ギャラリー</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="share" class="share">
+    <h2>当日の写真</h2>
+    <p>当日に撮った写真は、ここから送っていただけます。みなさまの写真もあとで見られます。</p>
+    <div id="shareLinks"></div>
+  </section>
+
+  <footer id="footer"></footer>
+</main>
+
+<script>
+/* ============================================================
+   ここを書き換えるだけでサイトの内容が変わります
+   ============================================================ */
+const CONFIG = {
+  password: "wedding",              // 合言葉(半角英数字がおすすめ)
+  groom: "太郎",
+  bride: "花子",
+  date: "2027-01-17",               // 挙式日 (YYYY-MM-DD)
+  venueName: "○○ホテル 3階 ○○の間",
+  address: "東京都千代田区○○1-2-3",
+  access: [
+    "○○駅 東口から徒歩5分",
+    "駐車場あり(ご利用の方は受付でお申し出ください)"
+  ],
+  schedule: [
+    { time: "12:00", text: "受付開始" },
+    { time: "12:30", text: "挙式" },
+    { time: "13:30", text: "披露宴" },
+    { time: "15:30", text: "お開き" }
+  ],
+  profiles: [
+    { role: "新郎", name: "太郎", text: "ここに新郎の紹介文が入ります。趣味や、ゲストに伝えたいひとことなど。" },
+    { role: "新婦", name: "花子", text: "ここに新婦の紹介文が入ります。趣味や、ゲストに伝えたいひとことなど。" }
+  ],
+  photos: [
+    // 例: "images/01.jpg", "images/02.jpg"  (空のままだと仮の枠が表示されます)
+  ],
+  history: [
+    { year: "1995", who: "新郎", text: "東京で生まれる" },
+    { year: "1996", who: "新婦", text: "大阪で生まれる" },
+    { year: "2020", who: "二人", text: "友人の紹介で出会う" },
+    { year: "2026", who: "二人", text: "プロポーズ" }
+  ],
+  upload: {
+    uploadUrl: "",   // 写真を送るためのURL(Googleドライブの共有フォルダなど)
+    albumUrl: ""     // みんなの写真を見るためのURL
+  },
+  footerMessage: "当日お会いできるのを楽しみにしています"
+};
+
+/* ============================================================ */
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function formatDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  const w = "日月火水木金土"[new Date(y, m - 1, d).getDay()];
+  return { long: `${y}年${m}月${d}日(${w})`, dots: `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}` };
+}
+
+function render() {
+  const c = CONFIG, dt = formatDate(c.date);
+  document.title = `${c.groom} & ${c.bride} 結婚式のご案内`;
+  $("gateTitle").textContent = `${c.groom} & ${c.bride}`;
+  $("names").innerHTML = `<span>${esc(c.groom)}</span><span class="bar" aria-hidden="true"></span><span>${esc(c.bride)}</span>`;
+  $("heroDate").textContent = dt.dots;
+  $("infoList").innerHTML =
+    `<dt>日にち</dt><dd>${esc(dt.long)}</dd>` +
+    `<dt>会場</dt><dd>${esc(c.venueName)}</dd>` +
+    `<dt>住所</dt><dd>${esc(c.address)}</dd>`;
+  $("mapLink").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(c.venueName + " " + c.address);
+  $("access").innerHTML = c.access.map((a) => `<li>${esc(a)}</li>`).join("");
+  $("timeline").innerHTML = c.schedule.map((s) => `<li><time>${esc(s.time)}</time><span>${esc(s.text)}</span></li>`).join("");
+  $("profiles").innerHTML = c.profiles.map((p) =>
+    `<div class="profile"><p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join("");
+  $("gallery").innerHTML = c.photos.length
+    ? c.photos.map((src) => `<button class="ph-btn" type="button" data-src="${esc(src)}" aria-label="写真を拡大"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join("")
+    : Array.from({ length: 6 }, () => `<div class="ph">写真</div>`).join("");
+  $("history").innerHTML = c.history.map((h) =>
+    `<li><time>${esc(h.year)}</time><span><span class="who">${esc(h.who)}</span>${esc(h.text)}</span></li>`).join("");
+  const links = [];
+  if (c.upload.uploadUrl) links.push(`<a class="btn" href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">写真を送る</a>`);
+  if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);
+  $("shareLinks").innerHTML = links.join("") || "<p>当日までに、写真の送り方をここでご案内します。</p>";
+  $("footer").textContent = c.footerMessage;
+}
+
+function unlock() {
+  $("gate").hidden = true;
+  $("main").hidden = false;
+  window.scrollTo(0, 0);
+}
+
+const norm = (s) => s.normalize("NFKC").trim();
+const KEY = "wedding-unlocked";
+
+render();
+
+const drawer = $("drawer"), menuBtn = $("menuBtn"), lb = $("lb");
+function setMenu(open) {
+  drawer.hidden = !open;
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "メニューを閉じる" : "メニュー");
+  document.body.style.overflow = open ? "hidden" : "";
+}
+menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
+drawer.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+
+$("gallery").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-src]");
+  if (!b) return;
+  $("lbImg").src = b.dataset.src;
+  lb.hidden = false;
+});
+lb.addEventListener("click", () => { lb.hidden = true; });
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  lb.hidden = true;
+  setMenu(false);
+});
+
+let remembered = false;
+try { remembered = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
+if (remembered) unlock();
+
+$("gateForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (norm($("pw").value) === norm(CONFIG.password)) {
+    try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
+    unlock();
+  } else {
+    $("err").textContent = "合言葉が違います。もう一度お試しください。";
+    $("pw").select();
+  }
+});
+</script>
+</body>
+</html>

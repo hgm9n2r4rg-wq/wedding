@@ -144,3 +144,28 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .hero-slides img.on { opacity: 1; }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(rgba(30, 43, 69, .5), rgba(30, 43, 69, .8)); }
 @media (prefers-reduced-motion: reduce) { .hero-slides img { transition: none; } }
+
+/* 英語表記のお名前 */
+:root { --latin: "Cormorant Garamond", "Shippori Mincho", serif; }
+.names {
+  flex-direction: column; align-items: center; gap: .3rem;
+  font-family: var(--latin); font-weight: 400; font-style: italic;
+  letter-spacing: .06em; line-height: 1.05; font-size: clamp(3.4rem, 16vw, 6.5rem);
+}
+.names span { writing-mode: horizontal-tb; }
+.names .amp { font-size: .42em; color: var(--kin); }
+
+/* 日時・アクセス下の横スクロール写真 */
+.strip-wrap { padding-bottom: 4.5rem; }
+.strip-wrap + section { border-top: 1px solid var(--fuji); }
+.strip { display: flex; gap: .6rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 1.5rem; scrollbar-width: none; }
+.strip::-webkit-scrollbar { display: none; }
+.strip > * { flex: 0 0 min(68%, 16rem); aspect-ratio: 3 / 4; object-fit: cover; scroll-snap-align: center; display: block; }
+.zoom { cursor: zoom-in; }
+.ph { display: grid; place-content: center; background: var(--tile); color: var(--ai-soft); font-size: .85rem; }
+
+/* 二人のプロフィール写真・あゆみ */
+.pf-photo { width: 100%; max-width: 18rem; aspect-ratio: 4 / 5; margin-bottom: 1.25rem; background: var(--tile); }
+.pf-photo img, .pf-photo .ph { width: 100%; height: 100%; object-fit: cover; display: block; }
+.timeline.hist li { grid-template-columns: 7rem 1fr; }
+.timeline.hist time { font-size: .95rem; }

@@ -3,6 +3,8 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const put = (id, html) => { const e = $(id); if (e) e.innerHTML = html; };
 const KEY = "wedding-unlocked";
+// 写真ファイルがまだ無いときは、仮の枠に差し替える
+const FALLBACK = `onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;写真&lt;/div&gt;'"`;
 const SECTIONS = [
   ["#top", "トップ"],
   ["#info", "日時・アクセス"],
@@ -23,7 +25,8 @@ function render() {
   const t = document.body.dataset.title;
   document.title = (t ? t + " | " : "") + `${c.groom} & ${c.bride}`;
   const gt = $("gateTitle"); if (gt) gt.textContent = `${c.groom} & ${c.bride}`;
-  put("names", `<span>${esc(c.groom)}</span><span class="bar" aria-hidden="true"></span><span>${esc(c.bride)}</span>`);
+  const hn = c.heroNames || [c.bride, c.groom];
+  put("names", `<span>${esc(hn[0])}</span><span class="amp" aria-hidden="true">&amp;</span><span>${esc(hn[1])}</span>`);
   const hd = $("heroDate"); if (hd) hd.textContent = dt.dots;
   put("infoList",
     `<dt>日にち</dt><dd>${esc(dt.long)}</dd><dt>会場</dt><dd>${esc(c.venueName)}</dd><dt>住所</dt><dd>${esc(c.address)}</dd>`);
@@ -32,7 +35,10 @@ function render() {
   put("access", c.access.map((a) => `<li>${esc(a)}</li>`).join(""));
   put("timeline", c.schedule.map((s) => `<li><time>${esc(s.time)}</time><span>${esc(s.text)}</span></li>`).join(""));
   put("profiles", c.profiles.map((p) =>
-    `<div class="profile"><p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join(""));
+    `<div class="profile"><div class="pf-photo"><img src="${esc(p.photo)}" alt="" loading="lazy" ${FALLBACK}></div>` +
+    `<p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join(""));
+  put("strip", (c.stripPhotos || []).map((src) =>
+    `<img class="zoom" data-src="${esc(src)}" src="${esc(src)}" alt="" loading="lazy" ${FALLBACK}>`).join(""));
   put("gallery", c.photoGroups.map((g) => {
     const tiles = g.files.length
       ? g.files.map((src) => `<button class="ph-btn" type="button" data-src="${esc(src)}" aria-label="写真を拡大"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join("")
@@ -76,8 +82,7 @@ function buildMenu() {
   };
   menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
   drawer.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
-  const g = $("gallery");
-  if (g) g.addEventListener("click", (e) => {
+  $("main").addEventListener("click", (e) => {
     const b = e.target.closest("[data-src]");
     if (!b) return;
     $("lbImg").src = b.dataset.src;

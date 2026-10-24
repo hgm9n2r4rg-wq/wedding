@@ -232,3 +232,6 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .vt img, .vt .ph { max-width: 14rem; }
 .vt .l img, .vt .l .ph { margin-left: auto; }
 .vt .r img, .vt .r .ph { margin-right: auto; }
+
+/* 出会ってから(中央に並ぶ縦の年表) */
+.vt li.vt-both p { grid-column: 1 / -1; text-align: center; }

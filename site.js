@@ -65,9 +65,10 @@ function render() {
   put("life", `<li class="vt-head"><div class="l">${esc(c.groom)}</div><div class="r">${esc(c.bride)}</div></li>` +
     (c.life || []).map((e) => e.photo
       ? `<li class="vt-ph"><span class="chip chip-ph">${esc(e.photo)}</span><div class="l">${pic(e.left)}</div><div class="r">${pic(e.right)}</div></li>`
-      : `<li><time class="chip">${esc(e.year)}</time><div class="l">${side(e.left)}</div><div class="r">${side(e.right)}</div></li>`).join(""));
-  put("history", c.history.map((h) =>
-    `<li><time>${esc(h.year)}</time><p><span class="who">${esc(h.who)}</span>${esc(h.text)}</p></li>`).join(""));
+      : `<li><time class="chip">${esc(e.year)}</time><div class="l">${side(e.left)}</div><div class="r">${side(e.right)}</div></li>`).join("") +
+    `<li class="vt-ph"><span class="chip chip-ph">ここから二人で</span></li>` +
+    (c.history || []).map((x) =>
+      `<li class="vt-both"><time class="chip">${esc(x.year)}</time><p>${esc(x.text)}</p></li>`).join(""));
   const links = [];
   if (c.upload.uploadUrl) links.push(`<a class="btn" href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">写真を送る</a>`);
   if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);

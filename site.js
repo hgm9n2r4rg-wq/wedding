@@ -16,6 +16,7 @@ const SECTIONS = [
   ["#info", "日時・アクセス"],
   ["#schedule", "当日の流れ"],
   ["#about", "二人の生い立ち"],
+  ["#story", "これまでのあゆみ"],
   ["#photos", "ギャラリー"],
   ["#share", "当日の写真"]
 ];
@@ -59,6 +60,12 @@ function render() {
     gal.addEventListener("click", (e) => { const b = e.target.closest(".tabs button"); if (b) setTab(+b.dataset.i); });
     setTab(0);
   }
+  const side = (v) => v ? `<p>${esc(v)}</p>` : "";
+  const pic = (src) => src ? `<img class="zoom" data-src="${esc(src)}" src="${esc(src)}" alt="" loading="lazy" ${FALLBACK}>` : "";
+  put("life", `<li class="vt-head"><div class="l">${esc(c.groom)}</div><div class="r">${esc(c.bride)}</div></li>` +
+    (c.life || []).map((e) => e.photo
+      ? `<li class="vt-ph"><span class="chip chip-ph">${esc(e.photo)}</span><div class="l">${pic(e.left)}</div><div class="r">${pic(e.right)}</div></li>`
+      : `<li><time class="chip">${esc(e.year)}</time><div class="l">${side(e.left)}</div><div class="r">${side(e.right)}</div></li>`).join(""));
   put("history", c.history.map((h) =>
     `<li><time>${esc(h.year)}</time><p><span class="who">${esc(h.who)}</span>${esc(h.text)}</p></li>`).join(""));
   const links = [];

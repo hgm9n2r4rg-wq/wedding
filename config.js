@@ -38,9 +38,22 @@ const CONFIG = {
     { tab: "猫と二人", title: "猫と二人の写真", folder: "images/neko-futari", count: 0 },
     { tab: "猫だけ",   title: "猫だけの写真",   folder: "images/neko",        count: 0 }
   ],
+  // ■ 出会うまで(司=左 / 里紗=右)。同じ学年なので入学・入社の時期をそろえて並べています
+  //   year を書いた行 = 出来事。left が司、right が里紗(片方だけでもOK)
+  //   photo を書いた行 = 写真の枠(left=司、right=里紗の写真)。不要なら、その行を消してください
+  //   ※入学・入社の年は、同学年・現役で進学した前提で入れています。違うところは直してください
+  life: [
+    { year: "2000.9.16", left: "長野県岡谷市で生まれる" },
+    { year: "2001.3.13", right: "東京都で生まれ、京都府京都市で育つ" },
+    { year: "2013.4", left: "信州大学教育大学附属松本中学校に入学", right: "京都市立衣笠中学校に入学" },
+    { photo: "中学時代", left: "images/life/chugaku-tsukasa.jpg", right: "images/life/chugaku-risa.jpg" },
+    { year: "2016.4", left: "駿台甲府高校に入学", right: "京都市立西京高等学校に入学" },
+    { photo: "高校時代", left: "images/life/koko-tsukasa.jpg", right: "images/life/koko-risa.jpg" },
+    { year: "2019.4", left: "中央大学理工学部に入学", right: "京都大学経済学部に入学" },
+    { year: "2023.4", left: "ベイカレント・コンサルティングに入社", right: "ボストン・コンサルティング・グループに入社" }
+  ],
+  // ■ 出会ってから(二人の出来事。横に流れる線表)
   history: [
-    { year: "2000.9.16", who: "新郎", text: "長野県岡谷市で生まれる" },
-    { year: "2001.3.13", who: "新婦", text: "東京都で生まれ、京都府京都市で育つ" },
     { year: "2024.10.19", who: "二人", text: "友人の紹介で初デート" },
     { year: "2024.11.9", who: "二人", text: "3回目のデート（館山ドライブ）で軽く司に告白されるも、一旦保留する" },
     { year: "2024.11.23", who: "二人", text: "司からの熱烈なアプローチを経て、付き合う" },

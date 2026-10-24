@@ -211,3 +211,24 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .tile .ph-btn { width: 100%; }
 .htl li { flex-basis: 14rem; }
 @media (min-width: 720px) { .album-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+/* 出会うまで(左=司 / 右=里紗 の縦の年表) */
+#story h2 + .sub { margin-top: 0; }
+.vt { list-style: none; margin: 0; padding: 0; position: relative; }
+.vt::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--kin); }
+.vt li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 1.5rem; padding-bottom: 1.75rem; }
+.vt li.vt-head { position: sticky; top: 0; z-index: 3; background: var(--paper); padding: .6rem 0 1rem; font-family: var(--mincho); font-weight: 600; font-size: 1.1rem; letter-spacing: .15em; }
+.vt .chip { grid-column: 1 / -1; justify-self: center; position: relative; z-index: 1; margin-bottom: .7rem; padding: .15rem .85rem; background: var(--paper); border: 1px solid var(--kin); border-radius: 999px; font-family: var(--mincho); font-weight: 600; font-size: .85rem; line-height: 1.6; }
+.vt .chip-ph { background: var(--kin); border-color: var(--kin); color: #fff; }
+.vt .l { grid-column: 1; text-align: right; }
+.vt .r { grid-column: 2; text-align: left; }
+.vt p { margin: 0; font-size: .9rem; line-height: 1.75; overflow-wrap: anywhere; }
+.vt img, .vt .ph { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+
+/* 表示の微調整(年表) */
+.vt .ph { display: grid; place-content: center; text-align: center; }
+.vt p { font-size: .86rem; text-wrap: balance; word-break: auto-phrase; }
+.htl { scroll-padding-left: 1.5rem; }
+.vt img, .vt .ph { max-width: 14rem; }
+.vt .l img, .vt .l .ph { margin-left: auto; }
+.vt .r img, .vt .r .ph { margin-right: auto; }

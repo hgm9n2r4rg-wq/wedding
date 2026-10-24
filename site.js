@@ -5,6 +5,12 @@ const put = (id, html) => { const e = $(id); if (e) e.innerHTML = html; };
 const KEY = "wedding-unlocked";
 // 写真ファイルがまだ無いときは、仮の枠に差し替える
 const FALLBACK = `onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;写真&lt;/div&gt;'"`;
+
+// 写真の一覧を作る(files を直接書く方法と、folder + count の連番の方法に対応)
+function photoList(g) {
+  if (g.files && g.files.length) return g.files;
+  return Array.from({ length: g.count || 0 }, (_, k) => `${g.folder}/${String(k + 1).padStart(3, "0")}.${g.ext || "jpg"}`);
+}
 const SECTIONS = [
   ["#top", "トップ"],
   ["#info", "日時・アクセス"],
@@ -39,14 +45,22 @@ function render() {
     `<p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join(""));
   put("strip", (c.stripPhotos || []).map((src) =>
     `<img class="zoom" data-src="${esc(src)}" src="${esc(src)}" alt="" loading="lazy" ${FALLBACK}>`).join(""));
-  put("gallery", c.photoGroups.map((g) => {
-    const tiles = g.files.length
-      ? g.files.map((src) => `<button class="ph-btn" type="button" data-src="${esc(src)}" aria-label="写真を拡大"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join("")
-      : Array.from({ length: 3 }, () => `<div class="ph">写真</div>`).join("");
-    return `<h3 class="sub">${esc(g.title)}</h3><div class="gallery">${tiles}</div>`;
-  }).join(""));
+  const groups = c.photoGroups;
+  put("gallery", `<div class="tabs" role="tablist">${groups.map((g, k) =>
+    `<button type="button" role="tab" data-i="${k}">${esc(g.tab || g.title)}</button>`).join("")}</div><div id="tabPanel"></div>`);
+  const gal = $("gallery");
+  if (gal) {
+    const setTab = (k) => {
+      gal.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.i === k)));
+      const g = groups[k], list = photoList(g), cover = g.cover || list[0] || `${g.folder}/001.jpg`;
+      put("tabPanel", `<a class="cover" href="album.html?g=${k}"><img src="${esc(cover)}" alt="" ${FALLBACK}>` +
+        `<span class="cover-cap">${list.length ? `写真をすべて見る・保存する(${list.length}枚)` : "写真を準備中です"} →</span></a>`);
+    };
+    gal.addEventListener("click", (e) => { const b = e.target.closest(".tabs button"); if (b) setTab(+b.dataset.i); });
+    setTab(0);
+  }
   put("history", c.history.map((h) =>
-    `<li><time>${esc(h.year)}</time><span><span class="who">${esc(h.who)}</span>${esc(h.text)}</span></li>`).join(""));
+    `<li><time>${esc(h.year)}</time><p><span class="who">${esc(h.who)}</span>${esc(h.text)}</p></li>`).join(""));
   const links = [];
   if (c.upload.uploadUrl) links.push(`<a class="btn" href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">写真を送る</a>`);
   if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);
@@ -99,7 +113,8 @@ function buildMenu() {
 function show() {
   const g = $("gate"); if (g) g.hidden = true;
   $("main").hidden = false;
-  window.scrollTo(0, 0);
+  const h = location.hash && document.querySelector(location.hash);
+  if (h) h.scrollIntoView(); else window.scrollTo(0, 0);
 }
 
 const norm = (s) => s.normalize("NFKC").trim();

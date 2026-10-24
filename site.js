@@ -1,15 +1,15 @@
-/* 全ページ共通の処理(合言葉・メニュー・内容の表示)。ふだんは触らなくて大丈夫です */
+/* 合言葉・メニュー・内容の表示。ふだんは触らなくて大丈夫です */
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const put = (id, html) => { const e = $(id); if (e) e.innerHTML = html; };
 const KEY = "wedding-unlocked";
-const PAGES = [
-  ["index.html", "トップ"],
-  ["info.html", "日時・アクセス"],
-  ["schedule.html", "当日の流れ"],
-  ["about.html", "二人の生い立ち"],
-  ["gallery.html", "ギャラリー"],
-  ["share.html", "当日の写真"]
+const SECTIONS = [
+  ["#top", "トップ"],
+  ["#info", "日時・アクセス"],
+  ["#schedule", "当日の流れ"],
+  ["#about", "二人の生い立ち"],
+  ["#photos", "ギャラリー"],
+  ["#share", "当日の写真"]
 ];
 
 function formatDate(iso) {
@@ -62,9 +62,7 @@ function render() {
 }
 
 function buildMenu() {
-  const here = location.pathname.split("/").pop() || "index.html";
-  const items = PAGES.map(([href, label]) =>
-    `<li><a href="${href}"${href === here ? ' aria-current="page"' : ""}>${label}</a></li>`).join("");
+  const items = SECTIONS.map(([href, label]) => `<li><a href="${href}">${label}</a></li>`).join("");
   $("main").insertAdjacentHTML("afterbegin",
     `<button class="menu-btn" id="menuBtn" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>` +
     `<nav class="drawer" id="drawer" aria-label="ページメニュー" hidden><ul>${items}</ul></nav>` +
@@ -77,6 +75,7 @@ function buildMenu() {
     document.body.style.overflow = open ? "hidden" : "";
   };
   menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
+  drawer.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
   const g = $("gallery");
   if (g) g.addEventListener("click", (e) => {
     const b = e.target.closest("[data-src]");
@@ -119,6 +118,4 @@ if (ok) {
       $("pw").select();
     }
   });
-} else {
-  location.replace("index.html");   // 合言葉を入力していない場合はトップへ
 }

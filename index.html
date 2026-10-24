@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body >
+<body>
 <div class="gate" id="gate">
   <h1 id="gateTitle"></h1>
   <p>ご案内ページを開くには合言葉を入力してください</p>
@@ -21,13 +21,44 @@
   </form>
 </div>
 <main id="main" hidden>
-  <header class="hero">
+  <header class="hero" id="top">
     <div class="hero-slides" id="heroSlides" aria-hidden="true"></div>
     <h1 class="names" id="names"></h1>
     <p class="hero-date" id="heroDate"></p>
     <p class="hero-lead">私たちの結婚式にお越しください</p>
-    <a class="btn" href="info.html">ご案内を見る</a>
+    <a class="btn" href="#info">ご案内を見る</a>
   </header>
+
+  <section id="info">
+    <h2>日時・アクセス</h2>
+    <dl id="infoList"></dl>
+    <a class="btn" id="mapLink" target="_blank" rel="noopener">Googleマップで開く</a>
+    <ul class="access" id="access"></ul>
+  </section>
+
+  <section id="schedule">
+    <h2>当日の流れ</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <section id="about">
+    <h2>二人の生い立ち</h2>
+    <div class="profiles" id="profiles"></div>
+    <h3 class="sub">これまでのあゆみ</h3>
+    <ol class="timeline" id="history"></ol>
+  </section>
+
+  <section id="photos">
+    <h2>ギャラリー</h2>
+    <div id="gallery"></div>
+  </section>
+
+  <section id="share" class="share">
+    <h2>当日の写真</h2>
+    <p>当日に撮った写真は、ここから送っていただけます。みなさまの写真もあとで見られます。</p>
+    <div id="shareLinks"></div>
+  </section>
+
   <footer id="footer"></footer>
 </main>
 

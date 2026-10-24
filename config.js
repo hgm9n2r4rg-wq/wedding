@@ -11,6 +11,9 @@ const CONFIG = {
   access: [
     "ゆりかもめ「お台場海浜公園駅」、りんかい線「東京テレポート駅」が最寄り駅です"
   ],
+  // トップ画面の背景写真(複数入れると自動で切り替わります)
+  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg"],
+  heroInterval: 3000,               // 切り替え間隔(ミリ秒)。3000 = 3秒
   schedule: [
     { time: "12:00", text: "受付開始" },
     { time: "12:30", text: "挙式" },

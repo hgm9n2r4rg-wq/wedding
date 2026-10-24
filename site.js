@@ -46,6 +46,19 @@ function render() {
   if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);
   put("shareLinks", links.join("") || "<p>当日までに、写真の送り方をここでご案内します。</p>");
   const f = $("footer"); if (f) f.textContent = c.footerMessage;
+  const hs = $("heroSlides");
+  if (hs) {
+    const list = c.heroPhotos || [];
+    hs.innerHTML = list.map((src, i) => `<img src="${esc(src)}" alt=""${i === 0 ? ' class="on"' : ""} onerror="this.remove()">`).join("");
+    let i = 0;
+    if (list.length > 1) setInterval(() => {
+      const imgs = hs.querySelectorAll("img");   // 読み込めなかった写真は自動で外れます
+      if (imgs.length < 2) return;
+      imgs.forEach((im) => im.classList.remove("on"));
+      i = (i + 1) % imgs.length;
+      imgs[i].classList.add("on");
+    }, c.heroInterval || 3000);
+  }
 }
 
 function buildMenu() {

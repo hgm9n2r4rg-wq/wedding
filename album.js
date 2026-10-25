@@ -2,10 +2,12 @@
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const KEY = "wedding-unlocked";
+const enc = (p) => String(p).split("/").map(encodeURIComponent).join("/");   // 日本語や空白の入った名前でも表示できるようにする
 const PAGE_SIZE = 50;   // 1ページに表示する枚数
 
 function photoList(g) {
   if (g.files && g.files.length) return g.files;
+  if (typeof PHOTOS !== "undefined" && PHOTOS[g.folder] && PHOTOS[g.folder].length) return PHOTOS[g.folder];
   return Array.from({ length: g.count || 0 }, (_, k) => `${g.folder}/${String(k + 1).padStart(3, "0")}.${g.ext || "jpg"}`);
 }
 
@@ -31,9 +33,10 @@ function init() {
     const items = list.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
     $("albumGrid").innerHTML = items.length ? items.map((src) => {
       const name = src.split("/").pop();
-      return `<figure class="tile"><button class="ph-btn" type="button" data-src="${esc(src)}" aria-label="写真を拡大">` +
-        `<img src="${esc(src)}" alt="" loading="lazy" onerror="this.closest('figure').remove()"></button>` +
-        `<a class="dl" href="${esc(src)}" download="${esc(name)}" aria-label="ダウンロード">↓</a></figure>`;
+      const u = enc(src);
+      return `<figure class="tile"><button class="ph-btn" type="button" data-src="${esc(u)}" aria-label="写真を拡大">` +
+        `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.closest('figure').remove()"></button>` +
+        `<a class="dl" href="${esc(u)}" download="${esc(name)}" aria-label="ダウンロード">↓</a></figure>`;
     }).join("") : `<p class="empty">写真は準備中です。もうしばらくお待ちください。</p>`;
 
     const nums = Array.from({ length: pages }, (_, k) =>
@@ -57,7 +60,7 @@ function init() {
     const src = b.dataset.src;
     $("lbImg").src = src;
     $("lbDl").href = src;
-    $("lbDl").download = src.split("/").pop();
+    $("lbDl").download = decodeURIComponent(src.split("/").pop());
     lb.hidden = false;
   });
   lb.addEventListener("click", () => { lb.hidden = true; });

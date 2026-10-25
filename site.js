@@ -3,12 +3,15 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const put = (id, html) => { const e = $(id); if (e) e.innerHTML = html; };
 const KEY = "wedding-unlocked";
+const enc = (p) => String(p).split("/").map(encodeURIComponent).join("/");   // 日本語や空白の入った名前でも表示できるようにする
 // 写真ファイルがまだ無いときは、仮の枠に差し替える
 const FALLBACK = `onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;写真&lt;/div&gt;'"`;
 
 // 写真の一覧を作る(files を直接書く方法と、folder + count の連番の方法に対応)
 function photoList(g) {
   if (g.files && g.files.length) return g.files;
+  // photos.js(自動で作られる一覧)にフォルダの写真があれば、それを使う
+  if (typeof PHOTOS !== "undefined" && PHOTOS[g.folder] && PHOTOS[g.folder].length) return PHOTOS[g.folder];
   return Array.from({ length: g.count || 0 }, (_, k) => `${g.folder}/${String(k + 1).padStart(3, "0")}.${g.ext || "jpg"}`);
 }
 const SECTIONS = [
@@ -54,7 +57,7 @@ function render() {
     const setTab = (k) => {
       gal.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.i === k)));
       const g = groups[k], list = photoList(g), cover = g.cover || list[0] || `${g.folder}/001.jpg`;
-      put("tabPanel", `<a class="cover" href="album.html?g=${k}"><img src="${esc(cover)}" alt="" ${FALLBACK}>` +
+      put("tabPanel", `<a class="cover" href="album.html?g=${k}"><img src="${esc(enc(cover))}" alt="" ${FALLBACK}>` +
         `<span class="cover-cap">${list.length ? `写真をすべて見る・保存する(${list.length}枚)` : "写真を準備中です"} →</span></a>`);
     };
     gal.addEventListener("click", (e) => { const b = e.target.closest(".tabs button"); if (b) setTab(+b.dataset.i); });

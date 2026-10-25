@@ -13,7 +13,7 @@ const CONFIG = {
     "ゆりかもめ「お台場海浜公園駅」、りんかい線「東京テレポート駅」が最寄り駅です"
   ],
   // トップ画面の背景写真(複数入れると自動で切り替わります)
-  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg"],
+  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg" "images/hero4.jpg", "images/hero5.jpg", "images/hero6.jpg",],
   heroInterval: 3000,               // 切り替え間隔(ミリ秒)。3000 = 3秒
   // 日時・アクセスの下の、横にスクロールできる写真(5枚くらい)
   stripPhotos: ["images/strip1.jpg", "images/strip2.jpg", "images/strip3.jpg", "images/strip4.jpg", "images/strip5.jpg"],

@@ -235,3 +235,20 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 
 /* 出会ってから(中央に並ぶ縦の年表) */
 .vt li.vt-both p { grid-column: 1 / -1; text-align: center; }
+
+/* トップ写真: 縦でも横でも見切れないよう、写真全体を表示し、余白はぼかした同じ写真で埋める */
+.hero-slides .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
+.hero-slides .slide.on { opacity: 1; }
+.hero-slides .bg { position: absolute; inset: -6%; background-size: cover; background-position: center; filter: blur(22px) brightness(.75); }
+.hero-slides .slide img { opacity: 1; transition: none; object-fit: contain; }
+@media (prefers-reduced-motion: reduce) { .hero-slides .slide { transition: none; } }
+
+/* スマホ(縦長の画面): 写真は上の約6割に全体を表示し、名前などは下にまとめる */
+@media (max-aspect-ratio: 1/1) {
+  .hero { place-content: end center; gap: 1rem; padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px)); }
+  .hero-slides .slide img { height: 56%; }
+  .hero::after { background: linear-gradient(rgba(30, 43, 69, .05) 0%, rgba(30, 43, 69, .08) 50%, rgba(30, 43, 69, .92) 64%); }
+  .names { font-size: clamp(2.6rem, 13vw, 4rem); gap: 0; }
+  .hero-lead { font-size: .85rem; }
+}
+.hero-slides .slide img.fill { object-fit: cover; }

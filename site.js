@@ -77,10 +77,25 @@ function render() {
   const hs = $("heroSlides");
   if (hs) {
     const list = c.heroPhotos || [];
-    hs.innerHTML = list.map((src, i) => `<img src="${esc(src)}" alt=""${i === 0 ? ' class="on"' : ""} onerror="this.remove()">`).join("");
+    hs.innerHTML = list.map((src, i) =>
+      `<div class="slide${i === 0 ? " on" : ""}"><div class="bg" style="background-image:url('${esc(src)}')"></div>` +
+      `<img src="${esc(src)}" alt="" onerror="this.closest('.slide').remove()"></div>`).join("");
+    // 画面の形に近い写真は画面いっぱいに、形が違う写真は全体が見えるように表示する
+    window.fitHero = () => {
+      const portrait = matchMedia("(max-aspect-ratio: 1/1)").matches;
+      const bw = hs.clientWidth, bh = hs.clientHeight * (portrait ? 0.56 : 1);
+      if (!bw || !bh) return;
+      hs.querySelectorAll(".slide img").forEach((im) => {
+        if (!im.naturalWidth) return;
+        const r = (im.naturalWidth / im.naturalHeight) / (bw / bh);
+        im.classList.toggle("fill", r > 0.88 && r < 1.14);
+      });
+    };
+    hs.addEventListener("load", window.fitHero, true);
+    window.addEventListener("resize", window.fitHero);
     let i = 0;
     if (list.length > 1) setInterval(() => {
-      const imgs = hs.querySelectorAll("img");   // 読み込めなかった写真は自動で外れます
+      const imgs = hs.querySelectorAll(".slide");   // 読み込めなかった写真は自動で外れます
       if (imgs.length < 2) return;
       imgs.forEach((im) => im.classList.remove("on"));
       i = (i + 1) % imgs.length;
@@ -121,6 +136,7 @@ function buildMenu() {
 function show() {
   const g = $("gate"); if (g) g.hidden = true;
   $("main").hidden = false;
+  if (window.fitHero) window.fitHero();
   const h = location.hash && document.querySelector(location.hash);
   if (h) h.scrollIntoView(); else window.scrollTo(0, 0);
 }

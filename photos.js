@@ -122,7 +122,17 @@ const PHOTOS = {
     "images/story/chiba/S__81035413_0.jpg",
     "images/story/chiba/S__81035414_0.jpg"
   ],
-  "images/story/korea": [],
+  "images/story/korea": [
+    "images/story/korea/S__81035419_0.jpg",
+    "images/story/korea/S__81035420_0.jpg",
+    "images/story/korea/S__81035421_0.jpg",
+    "images/story/korea/S__81035422_0.jpg",
+    "images/story/korea/S__81035423_0.jpg",
+    "images/story/korea/S__81035424_0.jpg",
+    "images/story/korea/S__81035425_0.jpg",
+    "images/story/korea/S__81035426_0.jpg",
+    "images/story/korea/S__81035427_0.jpg"
+  ],
   "images/story/nasushiobara": [],
   "images/story/taiwan": [],
   "images/story/kujukuri": [],

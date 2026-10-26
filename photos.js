@@ -210,10 +210,39 @@ const PHOTOS = {
     "images/story/europe/S__224084035_0.jpg"
   ],
   "images/story/propose": [
-    "images/story/propose/S__81035285_0.jpg"
+    "images/story/propose/S__81035285_0.jpg",
+    "images/story/propose/S__81035497_0.jpg",
+    "images/story/propose/S__81035498_0.jpg",
+    "images/story/propose/S__81035499_0.jpg",
+    "images/story/propose/S__81035500_0.jpg",
+    "images/story/propose/S__81035501_0.jpg",
+    "images/story/propose/S__81035502_0.jpg",
+    "images/story/propose/S__81035503_0.jpg",
+    "images/story/propose/S__81035504_0.jpg",
+    "images/story/propose/S__81035505_0.jpg",
+    "images/story/propose/S__81035506_0.jpg",
+    "images/story/propose/S__81035508_0.jpg",
+    "images/story/propose/S__81035509_0.jpg",
+    "images/story/propose/S__81035511_0.jpg"
   ],
   "images/story/honeymoon": [
-    "images/story/honeymoon/S__81035283_0.jpg"
+    "images/story/honeymoon/S__81035283_0.jpg",
+    "images/story/honeymoon/S__81035517_0.jpg",
+    "images/story/honeymoon/S__81035518_0.jpg",
+    "images/story/honeymoon/S__81035519_0.jpg",
+    "images/story/honeymoon/S__81035520_0.jpg",
+    "images/story/honeymoon/S__81035521_0.jpg",
+    "images/story/honeymoon/S__81035522_0.jpg",
+    "images/story/honeymoon/S__81035523_0.jpg",
+    "images/story/honeymoon/S__81035524_0.jpg",
+    "images/story/honeymoon/S__81035525_0.jpg",
+    "images/story/honeymoon/S__81035526_0.jpg",
+    "images/story/honeymoon/S__81035528_0.jpg",
+    "images/story/honeymoon/S__81035529_0.jpg",
+    "images/story/honeymoon/S__81035530_0.jpg",
+    "images/story/honeymoon/S__81035531_0.jpg",
+    "images/story/honeymoon/S__81035532_0.jpg",
+    "images/story/honeymoon/S__81035533_0.jpg"
   ],
   "images/story/family": []
 };

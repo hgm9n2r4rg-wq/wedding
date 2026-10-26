@@ -7,10 +7,22 @@ const PHOTOS = {
     "images/futari/S__81010702.jpg",
     "images/futari/S__81010705.jpg"
   ],
-  "images/neko-futari": [],
+  "images/neko-futari": [
+    "images/neko-futari/IMG_9290.JPG",
+    "images/neko-futari/IMG_9299.JPG",
+    "images/neko-futari/IMG_9348.JPG",
+    "images/neko-futari/IMG_9394.JPG",
+    "images/neko-futari/IMG_9395.JPG",
+    "images/neko-futari/IMG_9485.JPG"
+  ],
   "images/neko": [
     "images/neko/hero5.jpg",
     "images/neko/hero6.jpg",
+    "images/neko/IMG_9089.JPG",
+    "images/neko/IMG_9149.JPG",
+    "images/neko/IMG_9192.JPG",
+    "images/neko/IMG_9214.JPG",
+    "images/neko/IMG_9233.JPG",
     "images/neko/S__80920591.jpg",
     "images/neko/S__80920599.jpg",
     "images/neko/S__223830123.jpg",

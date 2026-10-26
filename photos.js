@@ -60,9 +60,16 @@ const PHOTOS = {
     "images/life/youji-tsukasa/S__81035302_0.jpg",
     "images/life/youji-tsukasa/S__81035303_0.jpg"
   ],
-  "images/life/youji-risa": [],
+  "images/life/youji-risa": [
+    "images/life/youji-risa/S__81035317_0.jpg",
+    "images/life/youji-risa/S__81035318_0.jpg",
+    "images/life/youji-risa/S__81035319_0.jpg",
+    "images/life/youji-risa/S__81035320_0.jpg"
+  ],
   "images/life/shogaku-tsukasa": [],
-  "images/life/shogaku-risa": [],
+  "images/life/shogaku-risa": [
+    "images/life/shogaku-risa/S__81035316_0.jpg"
+  ],
   "images/life/chugaku-tsukasa": [],
   "images/life/chugaku-risa": [],
   "images/life/koko-risa": [],

@@ -54,8 +54,9 @@ const polas = (v) => {
   }
   return `<div class="polas"><figure class="pola multi"><div class="pola-view">` +
     `<div class="pola-track" tabindex="0" role="button" aria-label="タップすると次の写真が見られます(横にスライドもできます)">` +
-    items.map((x) => `<div class="pola-slide"><div class="pola-img">${img(x)}<span class="pola-hint">タップ！ 次の写真 ›</span></div>${cap(x)}</div>`).join("") + `</div>` +
-    `<span class="pola-count">1 / ${items.length}</span></div></figure></div>`;
+    items.map((x, i) => `<div class="pola-slide"><div class="pola-img">${img(x)}</div>${cap(x)}` +
+      `<div class="pola-foot"><span class="pola-hint">タップ！ 次の写真 ›</span><span class="pola-count">${i + 1} / ${items.length}</span></div></div>`).join("") +
+    `</div></div></figure></div>`;
 };
 
 function render() {
@@ -170,12 +171,9 @@ function buildMenu() {
     const tr = e.target.classList && e.target.classList.contains("pola-track") ? e.target : null;
     if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); nextPhoto(tr); }
   });
-  $("main").addEventListener("scroll", (e) => {   // 「2 / 3」の表示を更新
+  $("main").addEventListener("scroll", (e) => {   // スライドしたら「タップ！」の脈打ちを止める
     const tr = e.target;
     if (!tr.classList || !tr.classList.contains("pola-track")) return;
-    const n = tr.children.length, i = Math.min(n - 1, Math.round(tr.scrollLeft / tr.clientWidth));
-    const c = tr.parentElement.querySelector(".pola-count");
-    if (c) c.textContent = `${i + 1} / ${n}`;
     if (tr.scrollLeft > 4) tr.closest(".pola").classList.add("tapped");
   }, true);
   document.addEventListener("keydown", (e) => {

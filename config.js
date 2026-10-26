@@ -13,7 +13,7 @@ const CONFIG = {
     "ゆりかもめ「お台場海浜公園駅」、りんかい線「東京テレポート駅」が最寄り駅です"
   ],
   // トップ画面の背景写真(複数入れると自動で切り替わります)
-  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg", "images/hero4.jpg", "images/hero5.jpg", "images/hero6.jpg"],
+  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg"],
   heroInterval: 3000,               // 切り替え間隔(ミリ秒)。3000 = 3秒
   // 日時・アクセスの下の、横にスクロールできる写真(5枚くらい)
   stripPhotos: ["images/strip1.jpg", "images/strip2.jpg", "images/strip3.jpg", "images/strip4.jpg", "images/strip5.jpg"],
@@ -39,12 +39,21 @@ const CONFIG = {
     { tab: "猫だけ",   title: "猫だけの写真",   folder: "images/neko",        count: 0 }
   ],
   // ■ 出会うまで(司=左 / 里紗=右)。同じ学年なので入学・入社の時期をそろえて並べています
-  //   year を書いた行 = 出来事。left が司、right が里紗(片方だけでもOK)
-  //   photo を書いた行 = 写真の枠(left=司、right=里紗の写真)。不要なら、その行を消してください
+  //   【出来事の行】 { year, left(司), right(里紗) }  片方だけでもOK
+  //        その出来事に写真を添えたいときは leftPhoto / rightPhoto を足します
+  //        例: leftPhoto: "images/life/a.jpg"                       (1枚)
+  //            leftPhoto: ["images/life/a.jpg", "images/life/b.jpg"] (複数枚)
+  //            leftPhoto: { src: "images/life/a.jpg", cap: "運動会" } (写真の下に一言)
+  //   【写真だけの行】 { photo: "小学生時代", left: 写真, right: 写真 }  写真の書き方は上と同じ
+  //   ※「幼い頃」「小学校」などは仮の書き方です。園名・学校名・思い出を書き足してください
   //   ※入学・入社の年は、同学年・現役で進学した前提で入れています。違うところは直してください
   life: [
     { year: "2000.9.16", left: "長野県岡谷市で生まれる" },
     { year: "2001.3.13", right: "東京都で生まれ、京都府京都市で育つ" },
+    { year: "幼い頃", left: "保育園に入園", right: "保育園に入園" },
+    { photo: "幼少期", left: "images/life/youji-tsukasa.jpg", right: "images/life/youji-risa.jpg" },
+    { year: "2007.4", left: "小学校に入学", right: "小学校に入学" },
+    { photo: "小学生時代", left: "images/life/shogaku-tsukasa.jpg", right: "images/life/shogaku-risa.jpg" },
     { year: "2013.4", left: "信州大学教育大学附属松本中学校に入学", right: "京都市立衣笠中学校に入学" },
     { photo: "中学時代", left: "images/life/chugaku-tsukasa.jpg", right: "images/life/chugaku-risa.jpg" },
     { year: "2016.4", left: "駿台甲府高校に入学", right: "京都市立西京高等学校に入学" },
@@ -52,16 +61,18 @@ const CONFIG = {
     { year: "2019.4", left: "中央大学理工学部に入学", right: "京都大学経済学部に入学" },
     { year: "2023.4", left: "ベイカレント・コンサルティングに入社", right: "ボストン・コンサルティング・グループに入社" }
   ],
-  // ■ 出会ってから(二人の出来事。横に流れる線表)
+  // ■ 出会ってから(二人の出来事)
+  //   photo を足すと、その出来事の下に写真が出ます(書き方は上と同じ。複数枚・一言つきもOK)
+  //   写真を載せない出来事は、photo の部分を消してください
   history: [
     { year: "2024.10.19", who: "二人", text: "友人の紹介で初デート" },
     { year: "2024.11.9", who: "二人", text: "3回目のデート（館山ドライブ）で軽く司に告白されるも、一旦保留する" },
     { year: "2024.11.23", who: "二人", text: "司からの熱烈なアプローチを経て、付き合う" },
     { year: "2025.10.25", who: "二人", text: "同棲開始" },
-    { year: "2025.12.18～2026.1.2", who: "二人", text: "大ヨーロッパ旅行でスペイン・フランス・スイス・イタリアに行く" },
-    { year: "2026.3.14", who: "二人", text: "プロポーズ♡" },
-    { year: "2026.9.18～2026.9.29", who: "二人", text: "新婚旅行でバリ・オーストラリアに行く（コアラタッチできたよ！）" },
-    { year: "2026.9.30", who: "二人", text: "翡翠・パールが家族になる" },
+    { year: "2025.12.18～2026.1.2", who: "二人", text: "大ヨーロッパ旅行でスペイン・フランス・スイス・イタリアに行く", photo: "images/story/europe.jpg" },
+    { year: "2026.3.14", who: "二人", text: "プロポーズ♡", photo: "images/story/propose.jpg" },
+    { year: "2026.9.18～2026.9.29", who: "二人", text: "新婚旅行でバリ・オーストラリアに行く（コアラタッチできたよ！）", photo: { src: "images/story/honeymoon.jpg", cap: "コアラタッチ！" } },
+    { year: "2026.9.30", who: "二人", text: "翡翠・パールが家族になる", photo: "images/story/family.jpg" },
     { year: "2026.11.22", who: "二人", text: "結婚式" }
   ],
   upload: {

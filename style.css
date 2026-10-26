@@ -223,15 +223,10 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .vt .l { grid-column: 1; text-align: right; }
 .vt .r { grid-column: 2; text-align: left; }
 .vt p { margin: 0; font-size: .9rem; line-height: 1.75; overflow-wrap: anywhere; }
-.vt img, .vt .ph { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 
 /* 表示の微調整(年表) */
-.vt .ph { display: grid; place-content: center; text-align: center; }
 .vt p { font-size: .86rem; text-wrap: balance; word-break: auto-phrase; }
 .htl { scroll-padding-left: 1.5rem; }
-.vt img, .vt .ph { max-width: 14rem; }
-.vt .l img, .vt .l .ph { margin-left: auto; }
-.vt .r img, .vt .r .ph { margin-right: auto; }
 
 /* 出会ってから(中央に並ぶ縦の年表) */
 .vt li.vt-both p { grid-column: 1 / -1; text-align: center; }
@@ -252,3 +247,20 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
   .hero-lead { font-size: .85rem; }
 }
 .hero-slides .slide img.fill { object-fit: cover; }
+
+/* 年表の写真(ポラロイド風) */
+.polas { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+.vt .l .polas { align-items: flex-end; }
+.vt .r .polas { align-items: flex-start; }
+.vt li.vt-both .polas { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.6rem; }
+.pola { position: relative; margin: 0; width: 100%; max-width: 12.5rem; padding: .45rem .45rem 1.6rem; background: #fff; transform: rotate(-1.6deg); cursor: zoom-in;
+  box-shadow: 0 1px 2px rgba(30, 43, 69, .12), 0 10px 20px -10px rgba(30, 43, 69, .4); }
+.pola:nth-child(even) { transform: rotate(1.5deg); }
+.pola:not(.nocap) { padding-bottom: .45rem; }
+.pola::before { content: ""; position: absolute; top: -.5rem; left: 50%; width: 3rem; height: .95rem; background: rgba(181, 154, 91, .38); transform: translateX(-50%) rotate(-3deg); }
+.pola img { display: block; width: 100%; height: auto; max-height: 22rem; aspect-ratio: auto 4 / 5; object-fit: cover; }   /* 読み込み前は4:5の枠を確保 */
+.pola .ph { aspect-ratio: 4 / 5; }
+.pola figcaption { padding: .55rem .3rem .2rem; text-align: center; font-family: var(--mincho); font-size: .78rem; line-height: 1.6; color: var(--ai-soft); }
+.vt .pola { text-align: left; }
+@media (min-width: 720px) { .pola { max-width: 15rem; } }
+@media (prefers-reduced-motion: no-preference) { .pola { transition: transform .25s ease; } .pola:hover { transform: rotate(0deg) scale(1.03); } }

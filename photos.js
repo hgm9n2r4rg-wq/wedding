@@ -13,7 +13,6 @@ const PHOTOS = {
     "images/neko-futari/IMG_9299.JPG",
     "images/neko-futari/IMG_9348.JPG",
     "images/neko-futari/IMG_9394.JPG",
-    "images/neko-futari/IMG_9395.JPG",
     "images/neko-futari/IMG_9485.JPG",
     "images/neko-futari/S__81035272_0.jpg",
     "images/neko-futari/S__81035274_0.jpg",

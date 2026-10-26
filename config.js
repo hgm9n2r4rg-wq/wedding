@@ -67,11 +67,21 @@ const CONFIG = {
   // ■ 出会ってから(二人の出来事)
   //   photo を足すと、その出来事の下に写真が出ます(書き方は上と同じ。フォルダ指定がおすすめ)
   //   写真を載せない出来事は、photo の部分を消してください
+  //   旅行などを足すときは、下の行をコピーして、日付(年代順の位置)・文章・フォルダ名を書き換えてください
+  //   ※フォルダ名は、半角の英数字にしてください(例: images/story/okinawa)
   history: [
     { year: "2024.10.19", who: "二人", text: "友人の紹介で初デート" },
     { year: "2024.11.9", who: "二人", text: "3回目のデート（館山ドライブ）で軽く司に告白されるも、一旦保留する" },
     { year: "2024.11.23", who: "二人", text: "司からの熱烈なアプローチを経て、付き合う" },
+    { year: "2024.12.24～12.25", who: "二人", text: "熱海へ旅行", photo: { folder: "images/story/atami" } },
+    { year: "2025.3.20～3.22", who: "二人", text: "セブへ旅行", photo: { folder: "images/story/cebu" } },
+    { year: "2025.4.12～4.13", who: "二人", text: "北海道へ旅行", photo: { folder: "images/story/hokkaido" } },
+    { year: "2025.6.14～6.15", who: "二人", text: "千葉でカニ食べ放題旅行", photo: { folder: "images/story/chiba" } },
+    { year: "2025.7.19～7.20", who: "二人", text: "韓国へ旅行", photo: { folder: "images/story/korea" } },
+    { year: "2025.9.14～9.15", who: "二人", text: "那須塩原へ旅行", photo: { folder: "images/story/nasushiobara" } },
+    { year: "2025.9.20～9.21", who: "二人", text: "台湾へ旅行", photo: { folder: "images/story/taiwan" } },
     { year: "2025.10.25", who: "二人", text: "同棲開始" },
+    { year: "2025.11.22～11.23", who: "二人", text: "1年記念で九十九里浜へ", photo: { folder: "images/story/kujukuri" } },
     { year: "2025.12.18～2026.1.2", who: "二人", text: "大ヨーロッパ旅行でスペイン・フランス・スイス・イタリアに行く", photo: { folder: "images/story/europe" } },
     { year: "2026.3.14", who: "二人", text: "プロポーズ♡", photo: { folder: "images/story/propose" } },
     { year: "2026.9.18～2026.9.29", who: "二人", text: "新婚旅行でバリ・オーストラリアに行く（コアラタッチできたよ！）", photo: { folder: "images/story/honeymoon" } },

@@ -30,6 +30,34 @@ function formatDate(iso) {
   return { long: `${y}年${m}月${d}日(${w})`, dots: `${y}.${String(m).padStart(2, "0")}.${String(d).padStart(2, "0")}` };
 }
 
+// ---- 写真の枠(ポラロイド風) ----
+const side = (v) => v ? `<p>${esc(v)}</p>` : "";
+// 写真は「ファイル名」「ファイル名の並び(複数枚)」「{ src: ファイル名, cap: 写真の下の一言 }」のどれでも書けます
+// 複数枚のときは、1つの枠の中で、タップするたびに次の写真へスライドします
+// フォルダごと指定する書き方: { folder: "images/life/koko-tsukasa" }(中の写真は名前を変えずに全部使われ、無ければ枠ごと出ません)
+const asList = (v) => !v ? [] : Array.isArray(v) ? v : [v];
+const polas = (v) => {
+  const items = asList(v).flatMap((it) => {
+    if (typeof it === "string") return [{ src: it, cap: "" }];
+    if (it && it.folder) {   // { folder: "images/…" } → そのフォルダの写真を全部(中身は photos.js が自動で作る一覧)
+      const names = (typeof PHOTOS !== "undefined" && PHOTOS[it.folder]) || [];
+      return names.map((s) => ({ src: s, cap: it.cap || "" }));
+    }
+    return [{ src: it.src, cap: it.cap || "" }];
+  });
+  if (!items.length) return "";
+  const img = (x) => `<img data-src="${esc(enc(x.src))}" src="${esc(enc(x.src))}" alt="" loading="lazy" ${FALLBACK}>`;
+  const cap = (x) => x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : "";
+  if (items.length === 1) {
+    const x = items[0];
+    return `<div class="polas"><figure class="pola${x.cap ? "" : " nocap"}">${img(x)}${cap(x)}</figure></div>`;
+  }
+  return `<div class="polas"><figure class="pola multi"><div class="pola-view">` +
+    `<div class="pola-track" tabindex="0" role="button" aria-label="タップすると次の写真が見られます(横にスライドもできます)">` +
+    items.map((x) => `<div class="pola-slide"><div class="pola-img">${img(x)}<span class="pola-hint">タップ！ 次の写真 ›</span></div>${cap(x)}</div>`).join("") + `</div>` +
+    `<span class="pola-count">1 / ${items.length}</span></div></figure></div>`;
+};
+
 function render() {
   const c = CONFIG, dt = formatDate(c.date);
   const t = document.body.dataset.title;
@@ -63,21 +91,10 @@ function render() {
     gal.addEventListener("click", (e) => { const b = e.target.closest(".tabs button"); if (b) setTab(+b.dataset.i); });
     setTab(0);
   }
-  const side = (v) => v ? `<p>${esc(v)}</p>` : "";
-  // 写真は「ファイル名」「ファイル名の並び(複数枚)」「{ src: ファイル名, cap: 写真の下の一言 }」のどれでも書けます
-  const asList = (v) => !v ? [] : Array.isArray(v) ? v : [v];
-  const polas = (v) => {
-    const list = asList(v);
-    if (!list.length) return "";
-    return `<div class="polas">` + list.map((it) => {
-      const src = typeof it === "string" ? it : it.src, cap = typeof it === "string" ? "" : (it.cap || "");
-      return `<figure class="pola${cap ? "" : " nocap"}"><img data-src="${esc(enc(src))}" src="${esc(enc(src))}" alt="" loading="lazy" ${FALLBACK}>` +
-        `${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
-    }).join("") + `</div>`;
-  };
   put("life", `<li class="vt-head"><div class="l">${esc(c.groom)}</div><div class="r">${esc(c.bride)}</div></li>` +
     (c.life || []).map((e) => e.photo
-      ? `<li class="vt-ph"><span class="chip chip-ph">${esc(e.photo)}</span><div class="l">${polas(e.left)}</div><div class="r">${polas(e.right)}</div></li>`
+      ? (polas(e.left) || polas(e.right)
+        ? `<li class="vt-ph"><span class="chip chip-ph">${esc(e.photo)}</span><div class="l">${polas(e.left)}</div><div class="r">${polas(e.right)}</div></li>` : "")
       : `<li><time class="chip">${esc(e.year)}</time><div class="l">${side(e.left)}${polas(e.leftPhoto)}</div><div class="r">${side(e.right)}${polas(e.rightPhoto)}</div></li>`).join("") +
     `<li class="vt-ph"><span class="chip chip-ph">ここから二人で</span></li>` +
     (c.history || []).map((x) =>
@@ -132,13 +149,35 @@ function buildMenu() {
   };
   menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
   drawer.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  const nextPhoto = (tr) => {   // 次の写真へ(最後の次は1枚目に戻る)
+    const w = tr.clientWidth, n = tr.children.length, i = Math.round(tr.scrollLeft / w);
+    tr.scrollTo({ left: ((i + 1) % n) * w, behavior: "smooth" });
+    tr.closest(".pola").classList.add("tapped");
+  };
   $("main").addEventListener("click", (e) => {
+    if (e.target.closest(".pola-track")) return;   // 複数枚の枠は下の処理でスライド
     const b = e.target.closest("[data-src]");
     if (!b) return;
     $("lbImg").src = b.dataset.src;
     lb.hidden = false;
   });
   lb.addEventListener("click", () => { lb.hidden = true; });
+  $("main").addEventListener("click", (e) => {
+    const tr = e.target.closest(".pola-track");
+    if (tr) nextPhoto(tr);
+  });
+  $("main").addEventListener("keydown", (e) => {   // キーボード: Enter / スペースで次の写真へ
+    const tr = e.target.classList && e.target.classList.contains("pola-track") ? e.target : null;
+    if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); nextPhoto(tr); }
+  });
+  $("main").addEventListener("scroll", (e) => {   // 「2 / 3」の表示を更新
+    const tr = e.target;
+    if (!tr.classList || !tr.classList.contains("pola-track")) return;
+    const n = tr.children.length, i = Math.min(n - 1, Math.round(tr.scrollLeft / tr.clientWidth));
+    const c = tr.parentElement.querySelector(".pola-count");
+    if (c) c.textContent = `${i + 1} / ${n}`;
+    if (tr.scrollLeft > 4) tr.closest(".pola").classList.add("tapped");
+  }, true);
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     lb.hidden = true;

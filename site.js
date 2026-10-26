@@ -4,6 +4,18 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 const put = (id, html) => { const e = $(id); if (e) e.innerHTML = html; };
 const KEY = "wedding-unlocked";
 const enc = (p) => String(p).split("/").map(encodeURIComponent).join("/");   // 日本語や空白の入った名前でも表示できるようにする
+// 自動で作られる軽い写真(thumb)。まだ無いときは元の写真を使います
+const PHOTO_SET = new Set(typeof PHOTOS !== "undefined" ? Object.values(PHOTOS).flat() : []);
+const variant = (src, kind) => {
+  if (!PHOTO_SET.has(src)) return src;
+  const i = src.lastIndexOf("/");
+  return src.slice(0, i) + "/" + kind + "/" + src.slice(i + 1).replace(/\.[^./]+$/, "") + ".jpg";
+};
+// 軽い写真が読めなかったら元の写真に切り替え、それもだめなら仮の枠にする
+function imgFail(el) {
+  if (el.dataset.o && !el.dataset.t) { el.dataset.t = "1"; el.src = el.dataset.o; return; }
+  el.outerHTML = '<div class="ph">写真</div>';
+}
 // 写真ファイルがまだ無いときは、仮の枠に差し替える
 const FALLBACK = `onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;写真&lt;/div&gt;'"`;
 
@@ -46,7 +58,7 @@ const polas = (v) => {
     return [{ src: it.src, cap: it.cap || "" }];
   });
   if (!items.length) return "";
-  const img = (x) => `<img data-src="${esc(enc(x.src))}" src="${esc(enc(x.src))}" alt="" loading="lazy" ${FALLBACK}>`;
+  const img = (x) => `<img data-src="${esc(enc(x.src))}" data-o="${esc(enc(x.src))}" src="${esc(enc(variant(x.src, "thumb")))}" alt="" loading="lazy" decoding="async" onerror="imgFail(this)">`;
   const cap = (x) => x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : "";
   if (items.length === 1) {
     const x = items[0];
@@ -58,6 +70,33 @@ const polas = (v) => {
       `<div class="pola-foot"><span class="pola-hint">タップ！ 次の写真 ›</span><span class="pola-count">${i + 1} / ${items.length}</span></div></div>`).join("") +
     `</div></div></figure></div>`;
 };
+
+// ギャラリー表紙を、ふわっと切り替えながら流す
+let coverTimer = 0;
+function coverFail(el) {
+  if (el.dataset.o && !el.dataset.t2) { el.dataset.t2 = "1"; el.src = el.dataset.o; return; }
+  const box = el.parentNode; el.remove();
+  if (!box.querySelector("img")) box.innerHTML = '<div class="ph">写真</div>';
+  else if (!box.querySelector("img.on")) { const f = box.querySelector("img"); if (!f.getAttribute("src")) f.src = f.dataset.t; f.classList.add("on"); }
+}
+function runCover(box) {
+  clearInterval(coverTimer);
+  if (!box || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const load = (im) => { if (im && !im.getAttribute("src")) im.src = im.dataset.t; };
+  const imgs = () => [...box.querySelectorAll("img")];
+  load(imgs()[1]);
+  coverTimer = setInterval(() => {
+    if (!box.isConnected) { clearInterval(coverTimer); return; }
+    if (document.hidden) return;
+    const all = imgs();
+    if (all.length < 2) return;
+    const i = Math.max(0, all.findIndex((im) => im.classList.contains("on")));
+    const next = all[(i + 1) % all.length];
+    if (!(next.complete && next.naturalWidth)) { load(next); return; }   // まだ読み込み中なら次の機会に
+    all[i].classList.remove("on"); next.classList.add("on");
+    load(all[(i + 2) % all.length]);   // その次の写真を先に読み込む
+  }, 3500);
+}
 
 function render() {
   const c = CONFIG, dt = formatDate(c.date);
@@ -85,9 +124,16 @@ function render() {
   if (gal) {
     const setTab = (k) => {
       gal.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-selected", String(+b.dataset.i === k)));
-      const g = groups[k], list = photoList(g), cover = g.cover || list[0] || `${g.folder}/001.jpg`;
-      put("tabPanel", `<a class="cover" href="album.html?g=${k}"><img src="${esc(enc(cover))}" alt="" ${FALLBACK}>` +
+      const g = groups[k], list = photoList(g);
+      const pick = list.length <= 8 ? list : Array.from({ length: 8 }, (_, n) => list[Math.floor(n * list.length / 8)]);   // 流す写真は最大8枚(軽くするため)
+      if (g.cover && !pick.includes(g.cover)) pick.unshift(g.cover);
+      const slides = pick.map((p, n) => {
+        const o = esc(enc(p)), t = esc(enc(variant(p, "thumb")));
+        return `<img class="${n ? "" : "on"}" ${n ? `data-t="${t}"` : `src="${t}"`} data-o="${o}" alt="" decoding="async" onerror="coverFail(this)">`;
+      }).join("");
+      put("tabPanel", `<a class="cover" href="album.html?g=${k}"><div class="cover-view">${slides || '<div class="ph">写真</div>'}</div>` +
         `<span class="cover-cap">${list.length ? `写真をすべて見る・保存する(${list.length}枚)` : "写真を準備中です"} →</span></a>`);
+      runCover(gal.querySelector(".cover-view"));
     };
     gal.addEventListener("click", (e) => { const b = e.target.closest(".tabs button"); if (b) setTab(+b.dataset.i); });
     setTab(0);

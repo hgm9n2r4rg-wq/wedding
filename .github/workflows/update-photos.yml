@@ -15,16 +15,23 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: 写真の一覧を作る
-        run: python3 .github/scripts/make_photos.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 画像ライブラリを入れる
+        run: pip install pillow
+      - name: 写真の一覧と、軽い写真を作る
+        run: python .github/scripts/make_photos.py
       - name: 変わっていたら保存する
         run: |
-          if [ -n "$(git status --porcelain photos.js)" ]; then
+          git add -A photos.js images
+          if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add photos.js
-            git commit -m "写真の一覧を更新"
+            git commit -m "写真の一覧と軽い写真を更新"
+            git pull --rebase origin main
             git push
           fi

@@ -19,10 +19,16 @@
   </header>
   <div class="album-grid" id="albumGrid"></div>
   <nav class="pager" id="pager" aria-label="ページ送り"></nav>
-  <div class="lb" id="lb" hidden>
-    <img id="lbImg" alt="">
-    <a class="btn" id="lbDl" download>ダウンロード</a>
+  <div class="alb" id="lb" hidden role="dialog" aria-label="写真ビューア">
+    <div class="alb-top"><span id="lbCount"></span><button type="button" class="alb-x" id="lbClose" aria-label="閉じる">×</button></div>
+    <div class="alb-stage" id="lbStage">
+      <button type="button" class="alb-nav prev" id="lbPrev" aria-label="前の写真">‹</button>
+      <img id="lbImg" alt="" draggable="false">
+      <button type="button" class="alb-nav next" id="lbNext" aria-label="次の写真">›</button>
+    </div>
+    <div class="alb-bottom"><button type="button" class="btn" id="lbSave">写真に保存</button></div>
   </div>
+  <div class="toast" id="toast" role="status" hidden></div>
 </main>
 <script src="config.js"></script>
 <script src="photos.js"></script>

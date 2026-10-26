@@ -5,7 +5,8 @@ const PHOTOS = {
     "images/futari/S__81010698.jpg",
     "images/futari/S__81010700.jpg",
     "images/futari/S__81010702.jpg",
-    "images/futari/S__81010705.jpg"
+    "images/futari/S__81010705.jpg",
+    "images/futari/S__81035269_0.jpg"
   ],
   "images/neko-futari": [
     "images/neko-futari/IMG_9290.JPG",
@@ -13,7 +14,10 @@ const PHOTOS = {
     "images/neko-futari/IMG_9348.JPG",
     "images/neko-futari/IMG_9394.JPG",
     "images/neko-futari/IMG_9395.JPG",
-    "images/neko-futari/IMG_9485.JPG"
+    "images/neko-futari/IMG_9485.JPG",
+    "images/neko-futari/S__81035272_0.jpg",
+    "images/neko-futari/S__81035274_0.jpg",
+    "images/neko-futari/S__81035281_0.jpg"
   ],
   "images/neko": [
     "images/neko/hero5.jpg",
@@ -25,12 +29,37 @@ const PHOTOS = {
     "images/neko/IMG_9233.JPG",
     "images/neko/S__80920591.jpg",
     "images/neko/S__80920599.jpg",
+    "images/neko/S__81035270_0.jpg",
+    "images/neko/S__81035271_0.jpg",
+    "images/neko/S__81035273_0.jpg",
+    "images/neko/S__81035275_0.jpg",
+    "images/neko/S__81035276_0.jpg",
+    "images/neko/S__81035277_0.jpg",
+    "images/neko/S__81035278_0.jpg",
+    "images/neko/S__81035280_0.jpg",
+    "images/neko/S__81035282_0.jpg",
+    "images/neko/S__81035284_0.jpg",
     "images/neko/S__223830123.jpg",
     "images/neko/S__223911984.jpg",
     "images/neko/S__223920134.jpg"
   ],
   "images/life/koko-tsukasa": [],
-  "images/life/youji-tsukasa": [],
+  "images/life/youji-tsukasa": [
+    "images/life/youji-tsukasa/S__81035288_0.jpg",
+    "images/life/youji-tsukasa/S__81035289_0.jpg",
+    "images/life/youji-tsukasa/S__81035291_0.jpg",
+    "images/life/youji-tsukasa/S__81035292_0.jpg",
+    "images/life/youji-tsukasa/S__81035293_0.jpg",
+    "images/life/youji-tsukasa/S__81035294_0.jpg",
+    "images/life/youji-tsukasa/S__81035295_0.jpg",
+    "images/life/youji-tsukasa/S__81035296_0.jpg",
+    "images/life/youji-tsukasa/S__81035297_0.jpg",
+    "images/life/youji-tsukasa/S__81035299_0.jpg",
+    "images/life/youji-tsukasa/S__81035300_0.jpg",
+    "images/life/youji-tsukasa/S__81035301_0.jpg",
+    "images/life/youji-tsukasa/S__81035302_0.jpg",
+    "images/life/youji-tsukasa/S__81035303_0.jpg"
+  ],
   "images/life/youji-risa": [],
   "images/life/shogaku-tsukasa": [],
   "images/life/shogaku-risa": [],
@@ -38,6 +67,7 @@ const PHOTOS = {
   "images/life/chugaku-risa": [],
   "images/life/koko-risa": [],
   "images/story/europe": [
+    "images/story/europe/S__81035286_0.jpg",
     "images/story/europe/S__224084004_0.jpg",
     "images/story/europe/S__224084005_0.jpg",
     "images/story/europe/S__224084006_0.jpg",
@@ -69,7 +99,11 @@ const PHOTOS = {
     "images/story/europe/S__224084034_0.jpg",
     "images/story/europe/S__224084035_0.jpg"
   ],
-  "images/story/propose": [],
-  "images/story/honeymoon": [],
+  "images/story/propose": [
+    "images/story/propose/S__81035285_0.jpg"
+  ],
+  "images/story/honeymoon": [
+    "images/story/honeymoon/S__81035283_0.jpg"
+  ],
   "images/story/family": []
 };

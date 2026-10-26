@@ -28,5 +28,17 @@ const PHOTOS = {
     "images/neko/S__223830123.jpg",
     "images/neko/S__223911984.jpg",
     "images/neko/S__223920134.jpg"
-  ]
+  ],
+  "images/life/koko-tsukasa": [],
+  "images/life/youji-tsukasa": [],
+  "images/life/youji-risa": [],
+  "images/life/shogaku-tsukasa": [],
+  "images/life/shogaku-risa": [],
+  "images/life/chugaku-tsukasa": [],
+  "images/life/chugaku-risa": [],
+  "images/life/koko-risa": [],
+  "images/story/europe": [],
+  "images/story/propose": [],
+  "images/story/honeymoon": [],
+  "images/story/family": []
 };

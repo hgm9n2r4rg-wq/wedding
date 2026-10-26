@@ -103,7 +103,16 @@ const PHOTOS = {
     "images/story/cebu/S__81035391_0.jpg",
     "images/story/cebu/S__81035392_0.jpg"
   ],
-  "images/story/hokkaido": [],
+  "images/story/hokkaido": [
+    "images/story/hokkaido/S__81035397_0.jpg",
+    "images/story/hokkaido/S__81035398_0.jpg",
+    "images/story/hokkaido/S__81035399_0.jpg",
+    "images/story/hokkaido/S__81035400_0.jpg",
+    "images/story/hokkaido/S__81035401_0.jpg",
+    "images/story/hokkaido/S__81035402_0.jpg",
+    "images/story/hokkaido/S__81035403_0.jpg",
+    "images/story/hokkaido/S__81035404_0.jpg"
+  ],
   "images/story/chiba": [],
   "images/story/korea": [],
   "images/story/nasushiobara": [],

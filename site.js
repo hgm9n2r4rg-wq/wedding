@@ -30,6 +30,7 @@ const SECTIONS = [
   ["#top", "トップ"],
   ["#info", "日時・アクセス"],
   ["#schedule", "当日の流れ"],
+  ["#items", "持ち物"],
   ["#about", "二人の生い立ち"],
   ["#story", "これまでのあゆみ"],
   ["#photos", "ギャラリー"],
@@ -115,8 +116,8 @@ function render() {
   put("profiles", c.profiles.map((p) =>
     `<div class="profile"><div class="pf-photo"><img src="${esc(p.photo)}" alt="" loading="lazy" ${FALLBACK}></div>` +
     `<p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join(""));
-  put("strip", (c.stripPhotos || []).map((src) =>
-    `<img class="zoom" data-src="${esc(src)}" src="${esc(src)}" alt="" loading="lazy" ${FALLBACK}>`).join(""));
+  const bl = c.belongings || {};
+  put("itemsList", `<dt>必要なもの</dt><dd>${esc(bl.need || "特になし")}</dd><dt>不要なもの</dt><dd>${esc(bl.noNeed || "特になし")}</dd>`);
   const groups = c.photoGroups;
   put("gallery", `<div class="tabs" role="tablist">${groups.map((g, k) =>
     `<button type="button" role="tab" data-i="${k}">${esc(g.tab || g.title)}</button>`).join("")}</div><div id="tabPanel"></div>`);

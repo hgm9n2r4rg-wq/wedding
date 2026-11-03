@@ -310,3 +310,6 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .tile .dl { border: 0; font: inherit; cursor: pointer; }
 .toast { position: fixed; left: 50%; bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 12; max-width: 90vw; padding: .7rem 1.1rem; background: rgba(20, 30, 50, .92); color: var(--paper); border: 1px solid rgba(255, 255, 255, .35); border-radius: 4px; font-size: .88rem; line-height: 1.5; text-align: center; }
 .toast[hidden] { display: none; }
+
+/* 持ち物 */
+.items { grid-template-columns: 6.5rem 1fr; }

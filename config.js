@@ -10,19 +10,23 @@ const CONFIG = {
   venueName: "小さな結婚式 お台場店",
   address: "東京都港区台場1-6-1 デックス東京ビーチ6F(シーサイドモール)",
   access: [
-    "ゆりかもめ「お台場海浜公園駅」、りんかい線「東京テレポート駅」が最寄り駅です"
+    "ゆりかもめ「お台場海浜公園駅」から徒歩約2分",
+    "りんかい線「東京テレポート駅」から徒歩約5分"
   ],
   // トップ画面の背景写真(複数入れると自動で切り替わります)
-  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg"],
+  heroPhotos: ["images/hero1.jpg", "images/hero2.jpg", "images/hero3.jpg", "images/hero4.jpg", "images/hero5.jpg", "images/hero6.jpg"],
   heroInterval: 3000,               // 切り替え間隔(ミリ秒)。3000 = 3秒
-  // 日時・アクセスの下の、横にスクロールできる写真(5枚くらい)
-  stripPhotos: ["images/strip1.jpg", "images/strip2.jpg", "images/strip3.jpg", "images/strip4.jpg", "images/strip5.jpg"],
   schedule: [
-    { time: "15:20", text: "集合" },
+    { time: "15:20", text: "集合＠小さな結婚式 お台場店" },
     { time: "16:00", text: "開場" },
     { time: "17:00", text: "閉会" },
     { time: "18:30", text: "ご飯会＠新居" }
   ],
+  // ■ 持ち物(「持ち物」の欄に表示されます)
+  belongings: {
+    need: "特になし(衣装をレンタルする方：シャツ、靴、靴下、肌着(ベージュ推奨))",
+    noNeed: "ご祝儀"
+  },
   profiles: [
     { role: "新郎", name: "司", photo: "images/tsukasa.jpg",
       text: "長野県岡谷市生まれ。信州大学教育大学附属松本中学校、駿台甲府高校を経て、中央大学理工学部を卒業。その後、ベイカレント・コンサルティングに入社。学生時代はバスケ部の部長を務め、持ち前のリーダーシップを発揮（していたはず）。趣味はバスケ観戦、寿司を食べること、そして愛する妻と猫と戯れること。里紗いわく「人の3倍食べる」。可愛い笑顔もチャームポイントです！" },

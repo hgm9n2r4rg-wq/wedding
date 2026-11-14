@@ -99,6 +99,36 @@ function runCover(box) {
   }, 3500);
 }
 
+// 写真をえらんだら、そのまま順に送る(3枚ずつ同時に)
+function wireUpload() {
+  const inp = $("upFile"), st = $("upStatus");
+  if (!inp) return;
+  let busy = false;
+  inp.addEventListener("change", async () => {
+    const files = [...inp.files]; inp.value = "";
+    if (!files.length || busy) return;
+    busy = true;
+    const warn = (e) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    let next = 0, done = 0, ok = 0, ng = 0, full = false;
+    const show = () => { st.textContent = `送信中… ${done} / ${files.length} 枚(画面を閉じずにお待ちください)`; };
+    show();
+    const worker = async () => {
+      while (next < files.length && !full) {
+        const f = files[next++];
+        try { await DBX.upload(f); ok++; } catch (e) { ng++; if (e.space) full = true; }
+        done++; show();
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+    window.removeEventListener("beforeunload", warn);
+    busy = false;
+    st.textContent = full ? "容量がいっぱいで送れませんでした。お手数ですが、新郎新婦にお知らせください。"
+      : ng ? `${ok}枚を送りました。${ng}枚は送れませんでした。もう一度お試しください。`
+      : `${ok}枚を送りました。ありがとうございました！`;
+  });
+}
+
 function render() {
   const c = CONFIG, dt = formatDate(c.date);
   const t = document.body.dataset.title;
@@ -148,9 +178,18 @@ function render() {
     (c.history || []).map((x) =>
       `<li class="vt-both"><time class="chip">${esc(x.year)}</time><p>${esc(x.text)}</p>${polas(x.photo)}</li>`).join(""));
   const links = [];
-  if (c.upload.uploadUrl) links.push(`<a class="btn" href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">写真を送る</a>`);
-  if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);
+  const dbxOn = typeof DBX !== "undefined" && DBX.enabled();
+  if (dbxOn) {   // サイトから直接、写真をえらんで送れる(config.js の dropbox が設定されているとき)
+    links.push(`<label class="btn btn-up">写真をえらんで送る<input type="file" id="upFile" accept="image/jpeg,image/png,image/gif,image/webp" multiple hidden></label>`);
+    links.push(`<a class="btn" href="guests.html">みんなの写真を見る・保存する</a>`);
+    links.push(`<p class="up-status" id="upStatus" role="status" aria-live="polite"></p>`);
+    if (c.upload.uploadUrl) links.push(`<p class="up-alt"><a href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">うまく送れない方はこちら</a></p>`);
+  } else {
+    if (c.upload.uploadUrl) links.push(`<a class="btn" href="${esc(c.upload.uploadUrl)}" target="_blank" rel="noopener">写真を送る</a>`);
+    if (c.upload.albumUrl) links.push(`<a class="btn" href="${esc(c.upload.albumUrl)}" target="_blank" rel="noopener">みんなの写真を見る</a>`);
+  }
   put("shareLinks", links.join("") || "<p>当日までに、写真の送り方をここでご案内します。</p>");
+  wireUpload();
   const f = $("footer"); if (f) f.textContent = c.footerMessage;
   const hs = $("heroSlides");
   if (hs) {

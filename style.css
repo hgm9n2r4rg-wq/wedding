@@ -324,3 +324,11 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .place .gather { font-family: var(--mincho); font-weight: 600; font-size: 1.15rem; letter-spacing: .06em; }
 .place .btn { margin-top: 1.25rem; font-size: .9rem; }
 @media (min-width: 720px) { .places { grid-template-columns: 1fr 1fr; } }
+
+/* 当日の写真(サイトから送る) */
+.share label.btn { cursor: pointer; background: var(--ai); color: var(--paper); }
+.share label.btn:hover { background: var(--ai-soft); }
+.up-status { margin: 1.1rem 0 0; min-height: 1.6em; font-size: .9rem; color: var(--ai-soft); }
+.up-alt { margin: .75rem 0 0; font-size: .82rem; }
+.tile.nothumb::after { content: "写真"; position: absolute; inset: 0; display: grid; place-content: center; background: var(--tile); color: var(--ai-soft); font-size: .8rem; pointer-events: none; }
+.tile img:not([src]) { background: var(--tile); }

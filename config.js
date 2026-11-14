@@ -97,6 +97,13 @@ const CONFIG = {
     { year: "2026.9.30", who: "二人", text: "翡翠・パールが家族になる", photo: { folder: "images/story/family" } },
     { year: "2026.11.22", who: "二人", text: "結婚式" }
   ],
+  // ■ 当日の写真をサイトから直接送る設定(Dropbox)。setup-dropbox.html で取得した値を入れてください
+  //   appKey と refreshToken が両方入ると「写真をえらんで送る」ボタンが出ます(空のままなら下の upload の旧方式になります)
+  dropbox: {
+    appKey: "",
+    refreshToken: "",
+    folder: "/guests"                // 送られた写真が入るフォルダ(アプリ専用フォルダの中)
+  },
   upload: {
     uploadUrl: "https://www.dropbox.com/request/7wsoafky9540gqpvjin5",   // 写真を送るためのURL(Googleドライブの共有フォルダなど)
     albumUrl: ""     // みんなの写真を見るためのURL

@@ -76,7 +76,13 @@ const PHOTOS = {
   ],
   "images/life/shogaku-tsukasa": [],
   "images/life/shogaku-risa": [
-    "images/life/shogaku-risa/S__81035316_0.jpg"
+    "images/life/shogaku-risa/S__81035316_0.jpg",
+    "images/life/shogaku-risa/S__81576096_0.jpg",
+    "images/life/shogaku-risa/S__81576097_0.jpg",
+    "images/life/shogaku-risa/S__81576098_0.jpg",
+    "images/life/shogaku-risa/S__81576099_0.jpg",
+    "images/life/shogaku-risa/S__81576100_0.jpg",
+    "images/life/shogaku-risa/S__81576101_0.jpg"
   ],
   "images/life/chugaku-tsukasa": [],
   "images/life/chugaku-risa": [],

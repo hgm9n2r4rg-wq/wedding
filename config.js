@@ -70,7 +70,9 @@ const CONFIG = {
     { year: "2016.4", left: "駿台甲府高校に入学", right: "京都市立西京高等学校に入学" },
     { photo: "高校時代", left: { folder: "images/life/koko-tsukasa" }, right: { folder: "images/life/koko-risa" } },
     { year: "2019.4", left: "中央大学理工学部に入学", right: "京都大学経済学部に入学" },
-    { year: "2023.4", left: "ベイカレント・コンサルティングに入社", right: "ボストン・コンサルティング・グループに入社" }
+    { photo: "大学時代", left: { folder: "images/life/daigaku-tsukasa" }, right: { folder: "images/life/daigaku-risa" } },
+    { year: "2023.4", left: "ベイカレント・コンサルティングに入社", right: "ボストン・コンサルティング・グループに入社" },
+    { photo: "社会人時代", left: { folder: "images/life/shakai-tsukasa" }, right: { folder: "images/life/shakai-risa" } }
   ],
   // ■ 出会ってから(二人の出来事)
   //   photo を足すと、その出来事の下に写真が出ます(書き方は上と同じ。フォルダ指定がおすすめ)

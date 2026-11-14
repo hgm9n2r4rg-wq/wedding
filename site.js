@@ -107,11 +107,12 @@ function render() {
   const hn = c.heroNames || [c.bride, c.groom];
   put("names", `<span>${esc(hn[0])}</span><span class="amp" aria-hidden="true">&amp;</span><span>${esc(hn[1])}</span>`);
   const hd = $("heroDate"); if (hd) hd.textContent = dt.dots;
-  put("infoList",
-    `<dt>日にち</dt><dd>${esc(dt.long)}</dd><dt>会場</dt><dd>${esc(c.venueName)}</dd><dt>住所</dt><dd>${esc(c.address)}</dd>`);
-  const ml = $("mapLink");
-  if (ml) ml.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(c.venueName + " " + c.address);
-  put("access", c.access.map((a) => `<li>${esc(a)}</li>`).join(""));
+  put("infoDate", esc(dt.long));
+  put("places", (c.places || []).map((p) =>
+    `<article class="place"><p class="place-label">${esc(p.label)}</p><h3>${esc(p.name)}</h3>` +
+    `<dl><dt>集合</dt><dd class="gather">${esc(p.gather)}</dd><dt>住所</dt><dd>${esc(p.address)}</dd>` +
+    `<dt>アクセス</dt><dd>${(p.access || []).map((a) => esc(a)).join("<br>")}</dd></dl>` +
+    `<a class="btn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.map || p.name + " " + p.address)}" target="_blank" rel="noopener">Googleマップで開く</a></article>`).join(""));
   put("timeline", c.schedule.map((s) => `<li><time>${esc(s.time)}</time><span>${esc(s.text)}</span></li>`).join(""));
   put("profiles", c.profiles.map((p) =>
     `<div class="profile"><div class="pf-photo"><img src="${esc(p.photo)}" alt="" loading="lazy" ${FALLBACK}></div>` +

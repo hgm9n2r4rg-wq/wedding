@@ -313,3 +313,14 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 
 /* 持ち物 */
 .items { grid-template-columns: 6.5rem 1fr; }
+
+/* 日時・アクセス(会場と新居のカード) */
+.info-date { margin: -.5rem 0 1.75rem; font-family: var(--mincho); font-size: 1.25rem; letter-spacing: .1em; }
+.places { display: grid; gap: 1.5rem; }
+.place { padding: 1.5rem 1.25rem 1.6rem; background: #fff; border: 1px solid var(--fuji); border-top: 2px solid var(--kin); }
+.place-label { margin: 0 0 .2rem; color: var(--kin); font-weight: 500; letter-spacing: .12em; font-size: .85rem; }
+.place h3 { font-size: 1.15rem; letter-spacing: .08em; margin-bottom: 1.1rem; }
+.place dl { grid-template-columns: 5rem 1fr; gap: .7rem 1rem; font-size: .92rem; line-height: 1.7; }
+.place .gather { font-family: var(--mincho); font-weight: 600; font-size: 1.15rem; letter-spacing: .06em; }
+.place .btn { margin-top: 1.25rem; font-size: .9rem; }
+@media (min-width: 720px) { .places { grid-template-columns: 1fr 1fr; } }

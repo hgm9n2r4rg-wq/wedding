@@ -224,6 +224,9 @@ const PHOTOS = {
     "images/story/propose/S__81035509_0.jpg",
     "images/story/propose/S__81035511_0.jpg"
   ],
+  "images/story/nyuseki": [
+    "images/story/nyuseki/S__81035290_0.jpg"
+  ],
   "images/story/honeymoon": [
     "images/story/honeymoon/S__81035283_0.jpg",
     "images/story/honeymoon/S__81035517_0.jpg",
@@ -243,5 +246,6 @@ const PHOTOS = {
     "images/story/honeymoon/S__81035532_0.jpg",
     "images/story/honeymoon/S__81035533_0.jpg"
   ],
-  "images/story/family": []
+  "images/story/family": [],
+  "/guests": []
 };

@@ -98,7 +98,7 @@ const CONFIG = {
     { year: "2026.11.22", who: "二人", text: "結婚式" }
   ],
   upload: {
-    uploadUrl: "",   // 写真を送るためのURL(Googleドライブの共有フォルダなど)
+    uploadUrl: "https://www.dropbox.com/request/7wsoafky9540gqpvjin5",   // 写真を送るためのURL(Googleドライブの共有フォルダなど)
     albumUrl: ""     // みんなの写真を見るためのURL
   },
   footerMessage: "当日お会いできるのを楽しみにしています"

@@ -101,7 +101,7 @@ const CONFIG = {
   //   appKey と refreshToken が両方入ると「写真をえらんで送る」ボタンが出ます(空のままなら下の upload の旧方式になります)
   dropbox: {
     appKey: "6gozh2jso3gp47q",
-    refreshToken: "",
+    refreshToken: "kZ8gDUYfa24AAAAAAAAAAdYVsWNbGYQO4zmymfDoNO4_qJLOKAt7TUDeM2jPjF0G",
     folder: "/guests"                // 送られた写真が入るフォルダ(アプリ専用フォルダの中)
   },
   upload: {

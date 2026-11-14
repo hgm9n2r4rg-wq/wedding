@@ -100,7 +100,7 @@ const CONFIG = {
   // ■ 当日の写真をサイトから直接送る設定(Dropbox)。setup-dropbox.html で取得した値を入れてください
   //   appKey と refreshToken が両方入ると「写真をえらんで送る」ボタンが出ます(空のままなら下の upload の旧方式になります)
   dropbox: {
-    appKey: "",
+    appKey: "6gozh2jso3gp47q",
     refreshToken: "",
     folder: "/guests"                // 送られた写真が入るフォルダ(アプリ専用フォルダの中)
   },

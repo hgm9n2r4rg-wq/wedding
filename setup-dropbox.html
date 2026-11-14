@@ -35,7 +35,7 @@ const $ = (id) => document.getElementById(id);
 const redirect = location.origin + location.pathname;
 $("redir").textContent = redirect;
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-$("key").value = localStorage.getItem("dbx-key") || "";
+$("key").value = localStorage.getItem("dbx-key") || "6gozh2jso3gp47q";
 $("go").onclick = async () => {
   const key = $("key").value.trim();
   if (!key) { $("msg").textContent = "App key を入力してください。"; return; }

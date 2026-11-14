@@ -24,10 +24,7 @@ function photoList(g) {
   return Array.from({ length: g.count || 0 }, (_, k) => `${g.folder}/${String(k + 1).padStart(3, "0")}.${g.ext || "jpg"}`);
 }
 
-let unlocked = false;
-try { unlocked = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
-if (!unlocked) location.replace("index.html");   // 合言葉を入力していない場合はトップへ
-else init();
+init();
 
 function init() {
   $("main").hidden = false;

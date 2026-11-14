@@ -103,8 +103,7 @@ function render() {
   const c = CONFIG, dt = formatDate(c.date);
   const t = document.body.dataset.title;
   document.title = (t ? t + " | " : "") + `${c.groom} & ${c.bride}`;
-  const gt = $("gateTitle"); if (gt) gt.textContent = `${c.groom} & ${c.bride}`;
-  const hn = c.heroNames || [c.bride, c.groom];
+    const hn = c.heroNames || [c.bride, c.groom];
   put("names", `<span>${esc(hn[0])}</span><span class="amp" aria-hidden="true">&amp;</span><span>${esc(hn[1])}</span>`);
   const hd = $("heroDate"); if (hd) hd.textContent = dt.dots;
   put("infoDate", esc(dt.long));
@@ -116,7 +115,7 @@ function render() {
   put("timeline", c.schedule.map((s) => `<li><time>${esc(s.time)}</time><span>${esc(s.text)}</span></li>`).join(""));
   put("profiles", c.profiles.map((p) =>
     `<div class="profile"><div class="pf-photo"><img src="${esc(p.photo)}" alt="" loading="lazy" ${FALLBACK}></div>` +
-    `<p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text)}</p></div>`).join(""));
+    `<p class="role">${esc(p.role)}</p><h3>${esc(p.name)}</h3><p>${esc(p.text).replace(/。(?![」』）)]|$)/g, "。<br>")}</p></div>`).join(""));
   const bl = c.belongings || {};
   put("itemsList", `<dt>必要なもの</dt><dd>${esc(bl.need || "特になし")}</dd><dt>不要なもの</dt><dd>${esc(bl.noNeed || "特になし")}</dd>`);
   const groups = c.photoGroups;
@@ -232,32 +231,12 @@ function buildMenu() {
 }
 
 function show() {
-  const g = $("gate"); if (g) g.hidden = true;
   $("main").hidden = false;
   if (window.fitHero) window.fitHero();
   const h = location.hash && document.querySelector(location.hash);
   if (h) h.scrollIntoView(); else window.scrollTo(0, 0);
 }
 
-const norm = (s) => s.normalize("NFKC").trim();
-
 render();
 buildMenu();
-
-let ok = false;
-try { ok = sessionStorage.getItem(KEY) === "1"; } catch (e) {}
-
-if (ok) {
-  show();
-} else if ($("gate")) {
-  $("gateForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (norm($("pw").value) === norm(CONFIG.password)) {
-      try { sessionStorage.setItem(KEY, "1"); } catch (e) {}
-      show();
-    } else {
-      $("err").textContent = "合言葉が違います。もう一度お試しください。";
-      $("pw").select();
-    }
-  });
-}
+show();

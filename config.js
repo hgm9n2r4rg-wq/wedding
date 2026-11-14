@@ -2,7 +2,6 @@
    ここを書き換えるだけでサイトの内容が変わります
    ============================================================ */
 const CONFIG = {
-  password: "wedding",              // 合言葉(半角英数字がおすすめ)
   groom: "司",
   bride: "里紗",
   date: "2026-11-22",               // 挙式日 (YYYY-MM-DD)
@@ -93,6 +92,7 @@ const CONFIG = {
     { year: "2025.11.22～11.23", who: "二人", text: "1年記念で九十九里浜へ", photo: { folder: "images/story/kujukuri" } },
     { year: "2025.12.18～2026.1.2", who: "二人", text: "大ヨーロッパ旅行でスペイン・フランス・スイス・イタリアに行く", photo: { folder: "images/story/europe" } },
     { year: "2026.3.14", who: "二人", text: "プロポーズ♡", photo: { folder: "images/story/propose" } },
+    { year: "2026.4.29", who: "二人", text: "入籍", photo: { folder: "images/story/nyuseki" } },
     { year: "2026.9.18～2026.9.29", who: "二人", text: "新婚旅行でバリ・オーストラリアに行く（コアラタッチできたよ！）", photo: { folder: "images/story/honeymoon" } },
     { year: "2026.9.30", who: "二人", text: "翡翠・パールが家族になる", photo: { folder: "images/story/family" } },
     { year: "2026.11.22", who: "二人", text: "結婚式" }

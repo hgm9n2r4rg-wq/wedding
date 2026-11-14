@@ -332,3 +332,5 @@ footer { text-align: center; padding: 3rem 1.5rem calc(3rem + env(safe-area-inse
 .up-alt { margin: .75rem 0 0; font-size: .82rem; }
 .tile.nothumb::after { content: "写真"; position: absolute; inset: 0; display: grid; place-content: center; background: var(--tile); color: var(--ai-soft); font-size: .8rem; pointer-events: none; }
 .tile img:not([src]) { background: var(--tile); }
+
+.share .share-note { margin: .25rem 0 1.25rem; font-size: .88rem; color: var(--ai-soft); }

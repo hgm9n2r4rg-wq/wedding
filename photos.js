@@ -88,7 +88,14 @@ const PHOTOS = {
   "images/life/chugaku-risa": [],
   "images/life/koko-risa": [],
   "images/life/daigaku-tsukasa": [],
-  "images/life/daigaku-risa": [],
+  "images/life/daigaku-risa": [
+    "images/life/daigaku-risa/S__81576110_0.jpg",
+    "images/life/daigaku-risa/S__81576111_0.jpg",
+    "images/life/daigaku-risa/S__81576112_0.jpg",
+    "images/life/daigaku-risa/S__81576113_0.jpg",
+    "images/life/daigaku-risa/S__81576114_0.jpg",
+    "images/life/daigaku-risa/S__81576115_0.jpg"
+  ],
   "images/life/shakai-tsukasa": [],
   "images/life/shakai-risa": [],
   "images/story/atami": [

@@ -43,8 +43,8 @@ const PHOTOS = {
     "images/neko/S__223920134.jpg"
   ],
   "images/life/koko-tsukasa": [
-    "images/life/koko-tsukasa/IMG_3144.JPG",
-    "images/life/koko-tsukasa/IMG_4561.JPG"
+    "images/life/koko-tsukasa/1.JPG",
+    "images/life/koko-tsukasa/IMG_3144.JPG"
   ],
   "images/life/youji-tsukasa": [
     "images/life/youji-tsukasa/S__81035288_0.jpg",

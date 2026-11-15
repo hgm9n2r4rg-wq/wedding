@@ -42,7 +42,10 @@ const PHOTOS = {
     "images/neko/S__223911984.jpg",
     "images/neko/S__223920134.jpg"
   ],
-  "images/life/koko-tsukasa": [],
+  "images/life/koko-tsukasa": [
+    "images/life/koko-tsukasa/IMG_3144.JPG",
+    "images/life/koko-tsukasa/IMG_4561.JPG"
+  ],
   "images/life/youji-tsukasa": [
     "images/life/youji-tsukasa/S__81035288_0.jpg",
     "images/life/youji-tsukasa/S__81035289_0.jpg",
@@ -84,7 +87,10 @@ const PHOTOS = {
     "images/life/shogaku-risa/S__81576100_0.jpg",
     "images/life/shogaku-risa/S__81576101_0.jpg"
   ],
-  "images/life/chugaku-tsukasa": [],
+  "images/life/chugaku-tsukasa": [
+    "images/life/chugaku-tsukasa/IMG_1931.JPG",
+    "images/life/chugaku-tsukasa/スクリーンショット 2026-11-15 195817.png"
+  ],
   "images/life/chugaku-risa": [],
   "images/life/koko-risa": [
     "images/life/koko-risa/S__81576123_0.jpg",

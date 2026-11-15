@@ -78,10 +78,10 @@ const PHOTOS = {
     "images/life/youji-risa/S__81035346_0.jpg"
   ],
   "images/life/shogaku-tsukasa": [
-    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 194804.png",
-    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195257.png",
-    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195526.png",
-    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195639.png"
+    "images/life/shogaku-tsukasa/1.png",
+    "images/life/shogaku-tsukasa/2.png",
+    "images/life/shogaku-tsukasa/3.png",
+    "images/life/shogaku-tsukasa/4.png"
   ],
   "images/life/shogaku-risa": [
     "images/life/shogaku-risa/S__81035316_0.jpg",

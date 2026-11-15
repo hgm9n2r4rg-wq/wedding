@@ -86,8 +86,24 @@ const PHOTOS = {
   ],
   "images/life/chugaku-tsukasa": [],
   "images/life/chugaku-risa": [],
-  "images/life/koko-risa": [],
-  "images/life/daigaku-tsukasa": [],
+  "images/life/koko-risa": [
+    "images/life/koko-risa/S__81576123_0.jpg",
+    "images/life/koko-risa/S__81576124_0.jpg",
+    "images/life/koko-risa/S__81576125_0.jpg",
+    "images/life/koko-risa/S__81576126_0.jpg",
+    "images/life/koko-risa/S__81576127_0.jpg",
+    "images/life/koko-risa/S__81576128_0.jpg",
+    "images/life/koko-risa/S__81576129_0.jpg"
+  ],
+  "images/life/daigaku-tsukasa": [
+    "images/life/daigaku-tsukasa/S__225017860_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017861_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017862_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017863_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017864_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017865_0.jpg",
+    "images/life/daigaku-tsukasa/S__225017866_0.jpg"
+  ],
   "images/life/daigaku-risa": [
     "images/life/daigaku-risa/S__81576110_0.jpg",
     "images/life/daigaku-risa/S__81576111_0.jpg",

@@ -77,7 +77,12 @@ const PHOTOS = {
     "images/life/youji-risa/S__81035345_0.jpg",
     "images/life/youji-risa/S__81035346_0.jpg"
   ],
-  "images/life/shogaku-tsukasa": [],
+  "images/life/shogaku-tsukasa": [
+    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 194804.png",
+    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195257.png",
+    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195526.png",
+    "images/life/shogaku-tsukasa/スクリーンショット 2026-11-15 195639.png"
+  ],
   "images/life/shogaku-risa": [
     "images/life/shogaku-risa/S__81035316_0.jpg",
     "images/life/shogaku-risa/S__81576096_0.jpg",
@@ -91,7 +96,14 @@ const PHOTOS = {
     "images/life/chugaku-tsukasa/IMG_1931.JPG",
     "images/life/chugaku-tsukasa/スクリーンショット 2026-11-15 195817.png"
   ],
-  "images/life/chugaku-risa": [],
+  "images/life/chugaku-risa": [
+    "images/life/chugaku-risa/S__81576168_0.jpg",
+    "images/life/chugaku-risa/S__81576169_0.jpg",
+    "images/life/chugaku-risa/S__81576170_0.jpg",
+    "images/life/chugaku-risa/S__81576171_0.jpg",
+    "images/life/chugaku-risa/S__81576172_0.jpg",
+    "images/life/chugaku-risa/S__81576173_0.jpg"
+  ],
   "images/life/koko-risa": [
     "images/life/koko-risa/S__81576123_0.jpg",
     "images/life/koko-risa/S__81576124_0.jpg",

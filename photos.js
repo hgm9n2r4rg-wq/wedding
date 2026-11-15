@@ -21,6 +21,7 @@ const PHOTOS = {
   "images/neko": [
     "images/neko/hero5.jpg",
     "images/neko/hero6.jpg",
+    "images/neko/IMG_6130(1).JPG",
     "images/neko/IMG_9089.JPG",
     "images/neko/IMG_9149.JPG",
     "images/neko/IMG_9192.JPG",
@@ -40,7 +41,8 @@ const PHOTOS = {
     "images/neko/S__81035284_0.jpg",
     "images/neko/S__223830123.jpg",
     "images/neko/S__223911984.jpg",
-    "images/neko/S__223920134.jpg"
+    "images/neko/S__223920134.jpg",
+    "images/neko/S__225067017.jpg"
   ],
   "images/life/koko-tsukasa": [
     "images/life/koko-tsukasa/1.JPG",
